@@ -7,11 +7,16 @@ the image prompts are tuned and working.
 # ── AR / transparent try-on positioning (per jewellery type) ─────────────────
 POSITION_INSTRUCTIONS = {
     "necklace": (
-        "Remove the Background"
-        "Show the necklace laid flat, photographed from directly the front "
-        "(straight-on, not tilted), as if worn facing the viewer. "
-        "Position it top-center of the frame with the clasp/chain top edge "
-        "touching the top boundary. Center it horizontally."
+        "Remove the Background. "
+        "This asset is for a 2D virtual try-on that overlays ONTO a person's neck "
+        "and chest from the front, so show ONLY the front-facing worn drape of the "
+        "necklace as it would appear resting on the collarbone/chest — the central "
+        "pendant, bib, and the two front strands curving up toward the shoulders. "
+        "DO NOT show the rear/back neck chain, the strand that goes behind the neck, "
+        "or the clasp — omit the entire back loop; the top should be an open U/V shape, "
+        "NOT a closed circle. Photograph it straight-on from the front (not tilted), "
+        "centered horizontally, with the two open strand ends reaching the top-left and "
+        "top-right of the frame."
     ),
     "earring_left": (
         "Remove the Background"
@@ -38,10 +43,13 @@ POSITION_INSTRUCTIONS = {
         "the viewer, centered exactly in the middle of the frame."
     ),
     "bangle": (
-        "Remove the Background"
-        "Show the bangle photographed straight-on from the front, as a "
-        "flat circular/oval shape, centered exactly in the middle of the "
-        "frame, as if worn on a wrist facing the viewer."
+        "Remove the Background. "
+        "This asset is for a 2D virtual try-on that overlays onto the front of a "
+        "wrist, so show ONLY the front-facing portion of the bangle that would be "
+        "visible on the wrist — the front arc/curve of the band. DO NOT show the "
+        "rear portion of the band that wraps behind the wrist; the top should be "
+        "an open curve, NOT a fully closed ring. Photograph it straight-on from the "
+        "front, centered in the frame, as if worn on a wrist facing the viewer."
     ),
 }
 
