@@ -49,6 +49,16 @@ Dockerfile · requirements.txt · README.md (HF YAML) · INTEGRATION.md · .env.
 `jewelleryType`: necklace · earring_left · earring_right · ring_index · ring_middle · bangle.
 `extraInstructions` = the manufacturer's **regenerate** note (appended to the base prompt). Empty = default.
 
+## Transparent try-on prompt convention (`lib/prompts.py`)
+The transparent PNG is for **2D virtual try-on**, so it must contain only the FRONT-facing worn part, positioned as worn:
+- **necklace**: front pendant/bib + two open front strands curving toward the shoulders — an open **U/V**, NOT a closed loop. Omit the rear neck chain + clasp.
+- **bangle**: front arc of the band only; omit the part that wraps behind the wrist.
+- **earrings/rings**: already front-only, single/pair/top-down.
+Old assets generated before this convention are full loops — **regenerate** them. Background must be 100% transparent (alpha=0), no shadow/prop/text.
+
+## Quota / errors
+`/catalog`, `/transparent`, `/describe` call OpenAI. If OpenAI billing is exhausted they return **`429 insufficient_quota`** (the caller/proxy may surface it as 502). Fix = add OpenAI credit; no code change. `/embed/*` does NOT use OpenAI (local OpenCLIP) so it keeps working regardless.
+
 ## Auth (TWO schemes — deliberate)
 - OpenAI endpoints (`/catalog`, `/transparent`, `/describe`): header `x-api-key: <AI_FEATURES_API_KEY>` (only enforced if that env is set).
 - `/embed/*`: header `Authorization: Bearer <EMBEDDER_API_KEY>` — **identical to the old embedder**, so Jewel Factory's existing embedder client works with zero code change. Falls back to `AI_FEATURES_API_KEY`.
