@@ -76,8 +76,18 @@ Old assets generated before this convention are full loops — **regenerate** th
 ## Deploy (HF Docker Space)
 1. Space → SDK Docker → push this repo. HF builds the Dockerfile, serves on 7860.
 2. Space Settings → Variables → `OPENAI_API_KEY` (+ `EMBEDDER_API_KEY` if used).
-3. Verify `GET /health` → `{"ok":true,"openai":true}`.
+3. Verify `GET /health` → `{"ok":true,"service":"ai-features","openai":true}`.
 4. Jewel Factory: set `AI_FEATURES_URL` = this Space, and point `EMBEDDER_URL` here too.
+
+**Current deployment:** live at HF Space `Botivate2026/ai-workspace` →
+`https://botivate2026-ai-workspace.hf.space` (health verified). Use the
+**lowercase** host in `AI_FEATURES_URL`/`EMBEDDER_URL` — a capital-cased URL
+307-redirects and drops the POST body (→ upstream 502). **Blocker:** the
+OpenAI-backed endpoints (`/catalog`, `/transparent`, `/describe`) currently return
+`429 insufficient_quota` — add OpenAI billing/credit (or set a funded
+`OPENAI_API_KEY` on the Space + restart). `/embed/*` uses local OpenCLIP and is
+unaffected. `AI_FEATURES_API_KEY` is NOT set on the Space, so leave it empty on
+Render too (no `x-api-key` sent).
 
 ## Gotchas
 - **OpenCLIP model (~350 MB) is LAZY-LOADED** on the first `/embed` call (not at boot),
