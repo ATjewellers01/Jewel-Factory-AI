@@ -19,7 +19,7 @@ router = APIRouter()
 
 
 @router.post("/transparent")
-async def transparent(image: UploadFile = File(...), jewelleryType: str = Form("necklace"), extraInstructions: str = Form("")):
+async def transparent(image: UploadFile = File(...), jewelleryType: str = Form("necklace"), extraInstructions: str = Form(""), category: str = Form(""), subCategory: str = Form("")):
     raw = await image.read()
     if not raw:
         raise HTTPException(400, "Empty image.")
@@ -33,7 +33,7 @@ async def transparent(image: UploadFile = File(...), jewelleryType: str = Form("
         result = client.images.edit(
             model=TRANSPARENT_MODEL,
             image=("source_image.png", io.BytesIO(png), "image/png"),
-            prompt=build_ar_prompt(jewelleryType, extraInstructions),
+            prompt=build_ar_prompt(jewelleryType, extraInstructions, category, subCategory),
             size="1024x1024",
         )
         gen = base64.b64decode(result.data[0].b64_json)

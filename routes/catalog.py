@@ -19,7 +19,7 @@ router = APIRouter()
 
 
 @router.post("/catalog")
-async def catalog(image: UploadFile = File(...), extraInstructions: str = Form("")):
+async def catalog(image: UploadFile = File(...), extraInstructions: str = Form(""), category: str = Form(""), subCategory: str = Form("")):
     raw = await image.read()
     if not raw:
         raise HTTPException(400, "Empty image.")
@@ -33,7 +33,7 @@ async def catalog(image: UploadFile = File(...), extraInstructions: str = Form("
         result = client.images.edit(
             model=CATALOG_MODEL,
             image=("source_image.png", io.BytesIO(png), "image/png"),
-            prompt=build_catalog_prompt(extraInstructions),
+            prompt=build_catalog_prompt(extraInstructions, category, subCategory),
             size="1024x1024",
         )
         b64 = result.data[0].b64_json

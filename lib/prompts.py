@@ -71,13 +71,146 @@ def _with_extra(prompt: str, extra: str | None) -> str:
     return f"{prompt}\n\nADDITIONAL INSTRUCTION FROM THE USER (follow it while keeping the product exact): {extra}"
 
 
-def build_ar_prompt(jtype: str, extra: str | None = None) -> str:
+def build_ar_prompt(jtype: str, extra: str | None = None, category: str | None = None, sub_category: str | None = None) -> str:
     pos = POSITION_INSTRUCTIONS.get(jtype, POSITION_INSTRUCTIONS["necklace"])
     return _with_extra(f"{pos} {AR_BASE_INSTRUCTION}", extra)
 
 
-def build_catalog_prompt(extra: str | None = None) -> str:
-    return _with_extra(CATALOG_PROMPT, extra)
+def _category_background_guidance(category: str | None, sub_category: str | None = None) -> str:
+    """Return category + sub-category specific background guidance for themed catalog styling.
+
+    Uses EXACT categories from lib/categories.ts (CATEGORY_TREE) to ensure
+    consistency with the manufacturer form dropdowns.
+    """
+    if not category:
+        return ""
+
+    category_lower = category.lower()
+    sub_category_lower = (sub_category or "").lower()
+
+    # Backgrounds mapped to ACTUAL categories + SUB-CATEGORIES from CATEGORY_TREE
+    # Every sub-category from lib/categories.ts has its own themed guidance
+    backgrounds = {
+        "bangles": {
+            "default": "Use a wrist form or elegant stand on a soft fabric surface (ivory, cream, or marble) with warm lighting that emphasizes curves, texture, and movement.",
+            "themes": {
+                "18k bangles": "Use rich, warm lighting highlighting premium quality, intricate detailing, and luxurious 18K gold finish.",
+                "antique bangle": "Use dramatic, moody lighting with antique props (vintage fabric, aged wood) emphasizing heritage aesthetic.",
+                "baby bangle": "Use delicate, gentle lighting with soft backgrounds showcasing the petite, refined nature of baby bangles.",
+                "fancy hmade bangle": "Use vibrant, multi-directional lighting highlighting decorative handmade elements and ornate details.",
+                "fusion bangle": "Use balanced lighting combining warm and cool tones to showcase the fusion of traditional and modern designs.",
+                "gajra bangle": "Use soft, romantic lighting with floral props emphasizing the bangle's floral-inspired motifs.",
+                "hollow bangles": "Use directional side lighting showcasing craftsmanship and creating elegant shadows on hollow design.",
+                "indo italian bangle": "Use sophisticated lighting blending warm European and rich Indian aesthetics.",
+                "machine bangles": "Use clean, professional lighting emphasizing precision, symmetry, and machine-perfect craftsmanship.",
+                "plaster bangle": "Use soft, even lighting that showcases the unique texture and delicate nature of plaster bangles.",
+                "reli bangle": "Use warm, layered lighting emphasizing the ornate Reli patterns and detailed craftsmanship.",
+                "top seller bangles": "Use showcase lighting that highlights why these are bestsellers—clear, flattering, crowd-pleasing aesthetics.",
+                "v- pacheli bangle": "Use elegant, flowing lighting emphasizing the V-shaped Pacheli design and its graceful curves.",
+            }
+        },
+        "earrings": {
+            "default": "Use subtle fabric backdrop (silk/velvet in ivory, beige, champagne) with soft side lighting emphasizing details and sparkle.",
+            "themes": {
+                "chandbali": "Use warm directional lighting highlighting the crescent moon design and ornate detailing.",
+                "jhumki": "Use dramatic side lighting with elegant props showcasing jhumki's dangles and movement.",
+                "kannoti earring": "Use soft intimate lighting highlighting the chain and ear chain details.",
+                "tops": "Use close-up focused lighting emphasizing stud details and gemstone work.",
+                "v chain earring": "Use flowing directional lighting showcasing the V-shaped chain design and elegant drape.",
+            }
+        },
+        "rings": {
+            "default": "Use luxury ring holder or marble pedestal with focused warm lighting showcasing band details.",
+            "themes": {
+                "couple ring": "Use paired display with warm matching lighting showcasing complementary designs together.",
+                "gents ring": "Use bold strong lighting emphasizing masculine design and substantial presence.",
+                "ladies ring": "Use soft romantic lighting with refined props enhancing femininity and delicate details.",
+            }
+        },
+        "set": {
+            "default": "Use elegant display setup on soft background with warm even lighting showcasing all pieces as cohesive collection.",
+            "themes": {
+                "antique set": "Use vintage props and moody warm lighting emphasizing heritage aesthetic of entire collection.",
+                "chain set": "Use flowing layout with directional lighting emphasizing chain components and connections.",
+                "choker set": "Use close-up intimate lighting emphasizing neckline placement and complete aesthetic.",
+                "long set": "Use flowing fabric or full-length display with directional lighting showing length and drape.",
+                "pendent set": "Use focused lighting emphasizing pendant as focal point while showcasing companion pieces.",
+                "short set": "Use compact focused display with warm lighting highlighting all pieces in unified frame.",
+                "turkish set": "Use rich, ornate lighting emphasizing the Turkish design elements and intricate craftsmanship.",
+            }
+        },
+        "bracelet": {
+            "default": "Use bracelet stand or graceful display on soft background with warm lighting capturing movement and texture.",
+            "themes": {
+                "gents bracelet / kada": "Use bold strong lighting emphasizing masculine craftsmanship and substantial design.",
+                "ladies bracelet": "Use soft elegant lighting with refined props highlighting delicate details and femininity.",
+            }
+        },
+        "pendants": {
+            "default": "Use luxury pendant stand or necklace form with warm focused lighting centering pendant as focal point.",
+            "themes": {
+                "dorla pendants": "Use directional lighting emphasizing pendant's hanging position and ornate details.",
+                "double hook pendants": "Use warm lighting showcasing dual-hook design and balanced aesthetic.",
+                "single hook pendants": "Use focused lighting highlighting hook mechanism and main design.",
+            }
+        },
+        "men's collection": {
+            "default": "Use bold, professional display with strong masculine lighting showcasing premium craftsmanship.",
+            "themes": {
+                "belt buckle": "Use focused lighting emphasizing the buckle's design, texture, and masculine presence.",
+                "cufflinks": "Use close-up detailed lighting showcasing intricate cufflink design and precious metalwork.",
+            }
+        },
+        "chain": {
+            "default": "Use flowing display or elegant drape on soft background with directional lighting highlighting links and craftsmanship.",
+        },
+        "mangalsutra": {
+            "default": "Use luxurious display on soft delicate background with warm intimate lighting emphasizing significance.",
+        },
+        "nath / nose ring": {
+            "default": "Use close-up intimate display with soft lighting emphasizing delicate design and placement.",
+        },
+        "bindiya / mangtika": {
+            "default": "Use luxury bindi/mangtika form with warm focused lighting highlighting intricate detailing.",
+        },
+        "ear chain kannoti": {
+            "default": "Use soft intimate lighting emphasizing the chain drape and delicate ear chain design.",
+        },
+        "jf coin": {
+            "default": "Use professional numismatic-style lighting showcasing coin detail, finish, and commemorative value.",
+        },
+        "watch": {
+            "default": "Use watch stand or elegant display with focused professional lighting showcasing face and craftsmanship.",
+            "themes": {
+                "gents watch": "Use bold strong lighting emphasizing masculine design and substantial presence.",
+                "ladies watch": "Use soft elegant lighting highlighting delicate details and refined aesthetic.",
+            }
+        },
+    }
+
+    # Try to match main category + sub-category for specific theme
+    for cat_key, cat_data in backgrounds.items():
+        if cat_key in category_lower or category_lower in cat_key:
+            if sub_category_lower and "themes" in cat_data:
+                for theme_key, theme_guidance in cat_data["themes"].items():
+                    if theme_key in sub_category_lower or sub_category_lower in theme_key:
+                        return theme_guidance
+            # Fallback to default for this category
+            return cat_data.get("default", backgrounds["bangles"]["default"])
+
+    # Ultimate fallback
+    return "Use a soft, neutral background (ivory, cream, champagne, or light marble) with warm, elegant lighting that complements the jewelry's gold tone and luxurious aesthetic."
+
+
+def build_catalog_prompt(extra: str | None = None, category: str | None = None, sub_category: str | None = None) -> str:
+    category_guidance = _category_background_guidance(category, sub_category)
+    base_prompt = CATALOG_PROMPT
+    if category_guidance:
+        base_prompt = base_prompt.replace(
+            "Use a soft beige, ivory, champagne, warm cream, or light marble luxury background.",
+            f"Use a soft beige, ivory, champagne, warm cream, or light marble luxury background. {category_guidance}"
+        )
+    return _with_extra(base_prompt, extra)
 
 
 # ── Catalog (luxury studio) prompt — verbatim from the pipeline ──────────────
