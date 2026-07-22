@@ -50,7 +50,7 @@ async def describe(
                     ],
                 }
             ],
-            max_tokens=400,
+            max_tokens=600,
         )
         content = resp.choices[0].message.content or "{}"
         parsed = json.loads(content)
@@ -61,6 +61,9 @@ async def describe(
 
     name = str(parsed.get("designName", "")).strip()
     desc = str(parsed.get("description", "")).strip()
-    if not name and not desc:
-        raise HTTPException(502, "Model returned no name/description.")
+    # Both are required — silently accepting a name-only (or desc-only) response
+    # lets an incomplete AI result through unnoticed. Fail loudly so the
+    # manufacturer sees a retry-able error instead of a blank field.
+    if not name or not desc:
+        raise HTTPException(502, f"Model returned incomplete result (designName={bool(name)}, description={bool(desc)}). Try again.")
     return {"designName": name, "description": desc}

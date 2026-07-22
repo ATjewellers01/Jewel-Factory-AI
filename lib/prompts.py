@@ -280,11 +280,13 @@ def build_describe_prompt(category: str, sub_category: str, weight: str, purity:
         "You are a copywriter for a premium GOLD jewellery brand (gold only). "
         "Look at the product image and the given specs, then write for the website.\n\n"
         f"Specs — {spec_line}.\n\n"
-        "Return ONLY strict JSON with two keys:\n"
+        "Return ONLY strict JSON with two keys — BOTH are REQUIRED and must NEVER "
+        "be an empty string, even with minimal specs:\n"
         '  "designName": a short, elegant, human product name (2-4 words, Title Case, '
         "no punctuation, jewellery-appropriate, e.g. 'Lotus Jhumka Set', 'Antique Choker').\n"
         '  "description": 2-3 warm sentences describing the piece for a customer '
-        "(mention the look/motif/craft; you MAY mention weight/purity if given). "
+        "(mention the look/motif/craft; you MAY mention weight/purity if given — if no "
+        "specs were given, describe purely from what's visible in the image). "
         "Do NOT mention price. Do NOT invent gemstones not visible.\n\n"
         'Example: {"designName": "Temple Motif Choker", "description": "A regal '
         '22K gold choker with intricate temple motifs... "}'
