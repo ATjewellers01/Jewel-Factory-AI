@@ -4,6 +4,8 @@ plus a describe prompt for auto name + description. Don't casually reword these:
 the image prompts are tuned and working.
 """
 
+import random
+
 # ── AR / transparent try-on: 2-step pipeline (matches the proven Colab notebook) ─
 # Step 1 (gpt-image-2): position the product correctly, on a PLAIN GREY
 # background (not transparent yet) — simple/high-contrast so step 2 can key
@@ -217,9 +219,27 @@ def _category_background_guidance(category: str | None, sub_category: str | None
     return "Use a soft, neutral background (ivory, cream, champagne, or light marble) with warm, elegant lighting that complements the jewelry's gold tone and luxurious aesthetic."
 
 
+# Large, varied headline pool. build_catalog_prompt() shuffles + samples a
+# SUBSET of these into the prompt on every call so the "first example" (the
+# one the model tends to just copy) is different each time — a static list
+# with "Timeless Grace" always first meant every generated image echoed it.
+HEADLINE_STYLE_POOL = [
+    "Timeless Grace", "Pure Elegance", "Crafted Forever", "Luxury Redefined",
+    "Shine Forever", "Eternal Gold", "Golden Whisper", "Radiant Heritage",
+    "Woven Gold", "Quiet Luxury", "Gilded Story", "Sunlit Gold",
+    "Modern Heritage", "Golden Hour", "Forever Radiant", "Bold Elegance",
+    "Golden Legacy", "Graceful Gold", "Artisan Gold", "Refined Beauty",
+]
+
+
+def _random_headline_examples(count: int = 6) -> str:
+    sample = random.sample(HEADLINE_STYLE_POOL, min(count, len(HEADLINE_STYLE_POOL)))
+    return ", ".join(f'"{h}"' for h in sample)
+
+
 def build_catalog_prompt(extra: str | None = None, category: str | None = None, sub_category: str | None = None) -> str:
     category_guidance = _category_background_guidance(category, sub_category)
-    base_prompt = CATALOG_PROMPT
+    base_prompt = CATALOG_PROMPT_TEMPLATE.format(headline_examples=_random_headline_examples())
     if category_guidance:
         base_prompt = base_prompt.replace(
             "Use a soft beige, ivory, champagne, warm cream, or light marble luxury background.",
@@ -229,7 +249,7 @@ def build_catalog_prompt(extra: str | None = None, category: str | None = None, 
 
 
 # ── Catalog (luxury studio) prompt — verbatim from the pipeline ──────────────
-CATALOG_PROMPT = """
+CATALOG_PROMPT_TEMPLATE = """
 You are a world-class luxury jewelry advertising photographer and creative director.
 
 TASK:
@@ -261,8 +281,11 @@ Center the jewelry perfectly. Keep lots of clean negative space. Balanced compos
 Magazine-quality layout.
 
 TEXT:
-Very minimal. Maximum 2-4 words. Examples: "Timeless Grace", "Pure Elegance",
-"Crafted Forever", "Luxury Redefined", "Shine Forever", "Eternal Gold".
+Very minimal. Maximum 2-4 words. Invent a FRESH headline inspired by THIS
+specific piece's look (motif, texture, mood) — do not default to the same
+phrase you'd use for a different design. Style inspiration only (do not just
+copy one verbatim, and don't reuse the same headline you generated last time):
+{headline_examples}.
 Do NOT add weight, price, purity, icons, specifications, feature lists, badges,
 or unnecessary typography. Only one elegant headline.
 
