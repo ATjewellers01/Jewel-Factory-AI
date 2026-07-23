@@ -44,12 +44,13 @@ POSITION_INSTRUCTIONS = {
         "the viewer, centered exactly in the middle of the frame."
     ),
     "bangle": (
-        "This asset is for a 2D virtual try-on that overlays onto the front of a "
-        "wrist, so show ONLY the front-facing portion of the bangle that would be "
-        "visible on the wrist — the front arc/curve of the band. DO NOT show the "
-        "rear portion of the band that wraps behind the wrist; the top should be "
-        "an open curve, NOT a fully closed ring. Photograph it straight-on from the "
-        "front, centered in the frame, as if worn on a wrist facing the viewer."
+        "This asset is for a 2D virtual try-on that overlays flat onto a wrist, so "
+        "show the bangle/bracelet as a FLAT, STRAIGHT horizontal band — laid out "
+        "fully open, edge-to-edge across the frame, with its complete front design "
+        "visible along the entire length. DO NOT show it as a curved arc, an oval, "
+        "or any closed/circular ring shape — it must be perfectly straight and flat, "
+        "as if unrolled and photographed directly from the front. Center it "
+        "horizontally and vertically in the frame with even padding on left and right."
     ),
 }
 
