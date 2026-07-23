@@ -3,7 +3,7 @@ uvicorn[standard]==0.32.1
 python-multipart==0.0.20
 pydantic==2.10.4
 Pillow==11.0.0
-openai==1.59.6
+openai>=1.75.0
 
 # Visual search (OpenCLIP). CPU torch installed via the pytorch index in the Dockerfile.
 open-clip-torch==2.30.0
