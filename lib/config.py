@@ -33,5 +33,10 @@ API_KEY = os.environ.get("AI_FEATURES_API_KEY")
 
 # Image models (kept identical to the working Colab pipeline).
 CATALOG_MODEL = os.environ.get("CATALOG_MODEL", "gpt-image-2")
+# Transparent try-on is a 2-step pipeline (matches the proven Colab notebook):
+# step 1 positions the product on a plain grey background (TRANSPARENT_MODEL),
+# step 2 strips it to real alpha transparency via the native background=
+# "transparent" API param, which only gpt-image-1 supports reliably.
 TRANSPARENT_MODEL = os.environ.get("TRANSPARENT_MODEL", "gpt-image-2")
+TRANSPARENT_BG_MODEL = os.environ.get("TRANSPARENT_BG_MODEL", "gpt-image-1")
 DESCRIBE_MODEL = os.environ.get("DESCRIBE_MODEL", "gpt-4o")

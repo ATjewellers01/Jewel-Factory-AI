@@ -49,8 +49,21 @@ Dockerfile · requirements.txt · README.md (HF YAML) · INTEGRATION.md · .env.
 `jewelleryType`: necklace · earring_left · earring_right · ring_index · ring_middle · bangle.
 `extraInstructions` = the manufacturer's **regenerate** note (appended to the base prompt). Empty = default.
 
-## Transparent try-on prompt convention (`lib/prompts.py`)
-The transparent PNG is for **2D virtual try-on**, so it must contain only the FRONT-facing worn part, positioned as worn:
+## Transparent try-on: 2-step pipeline (`routes/transparent.py`, `lib/prompts.py`)
+Matches the proven Colab notebook — **two OpenAI calls per `/transparent` request**, not one:
+1. **Step 1** (`TRANSPARENT_MODEL`, default `gpt-image-2`) — `build_ar_position_prompt()` positions the product on a plain solid light-grey (`#e0e0e0`) background. NOT transparent yet.
+2. **Step 2** (`TRANSPARENT_BG_MODEL`, default `gpt-image-1`) — `build_ar_transparency_prompt()` + the native `background="transparent"` API param strips step 1's grey background to real alpha transparency.
+
+Why 2 steps + 2 models: a single-call version that only *asks* for transparency in
+the prompt text sometimes shipped an **opaque black background** instead (gpt-image
+occasionally fails to remove backgrounds cleanly, especially on complex/reflective
+jewelry) — `img.getbbox()` in `verify_and_center` doesn't catch this since an opaque
+black pixel is still "non-zero." The native `background="transparent"` parameter
+(only reliable on gpt-image-1) is a real API guarantee, not just a prompt request.
+`image_utils.verify_and_center` also now checks the four corners are actually
+transparent before cropping, and raises (→ 502, retry-able) if they aren't.
+
+The transparent PNG is for **2D virtual try-on**, so it must contain only the FRONT-facing worn part, positioned as worn (step 1's job):
 - **necklace**: front pendant/bib + two open front strands curving toward the shoulders — an open **U/V**, NOT a closed loop. Omit the rear neck chain + clasp.
 - **bangle**: front arc of the band only; omit the part that wraps behind the wrist.
 - **earrings/rings**: already front-only, single/pair/top-down.
@@ -70,7 +83,7 @@ Old assets generated before this convention are full loops — **regenerate** th
 | `AI_FEATURES_API_KEY` | optional | x-api-key for OpenAI endpoints |
 | `EMBEDDER_API_KEY` | optional | Bearer for `/embed/*` (falls back to AI_FEATURES_API_KEY) |
 | `AI_FEATURES_ALLOWED_ORIGINS` | optional | CSV; default `*` |
-| `CATALOG_MODEL` / `TRANSPARENT_MODEL` / `DESCRIBE_MODEL` | optional | defaults gpt-image-2 / gpt-image-2 / gpt-4o |
+| `CATALOG_MODEL` / `TRANSPARENT_MODEL` / `TRANSPARENT_BG_MODEL` / `DESCRIBE_MODEL` | optional | defaults gpt-image-2 / gpt-image-2 / gpt-image-1 / gpt-4o. `TRANSPARENT_BG_MODEL` must support `background="transparent"` (gpt-image-1). |
 | `HF_HOME` | (Docker sets) | `/data/.huggingface` — CLIP model cache |
 
 ## Deploy (HF Docker Space)
@@ -99,7 +112,7 @@ Render too (no `x-api-key` sent).
 - **`verify_and_center`** crops the generated PNG to its non-transparent bbox and
   re-pads to a centered square, so AR pivot calibration stays consistent. Keep it.
 - **No CUDA on HF free** — torch is CPU-only (installed via the pytorch CPU index in the Dockerfile).
-- Every image call = a paid OpenAI request; regenerate is one call per click (intended).
+- Every image call = a paid OpenAI request; regenerate is one call per click for `/catalog`/`/describe`, but **`/transparent` is 2 calls per click** (position + transparency step) — roughly double cost/latency, intended trade-off for reliable transparency.
 
 ## Add a future AI feature
 1. `routes/<feature>.py` with an `APIRouter` + endpoint.

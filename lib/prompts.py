@@ -4,10 +4,13 @@ plus a describe prompt for auto name + description. Don't casually reword these:
 the image prompts are tuned and working.
 """
 
-# ── AR / transparent try-on positioning (per jewellery type) ─────────────────
+# ── AR / transparent try-on: 2-step pipeline (matches the proven Colab notebook) ─
+# Step 1 (gpt-image-2): position the product correctly, on a PLAIN GREY
+# background (not transparent yet) — simple/high-contrast so step 2 can key
+# it out cleanly. Step 2 (gpt-image-1 + background="transparent" API param):
+# ONLY strips the background to real alpha transparency, no repositioning.
 POSITION_INSTRUCTIONS = {
     "necklace": (
-        "Remove the Background. "
         "This asset is for a 2D virtual try-on that overlays ONTO a person's neck "
         "and chest from the front, so show ONLY the front-facing worn drape of the "
         "necklace as it would appear resting on the collarbone/chest — the central "
@@ -19,31 +22,26 @@ POSITION_INSTRUCTIONS = {
         "top-right of the frame."
     ),
     "earring_left": (
-        "Remove the Background"
         "Show a single earring photographed straight-on from the front. "
         "Position it in the right-center of the frame (since this earring "
         "will render on the wearer's left ear, camera-left = wearer's right "
         "in a mirrored view). Hook or post should point upward, top of frame."
     ),
     "earring_right": (
-        "Remove the Background"
         "Show a single earring photographed straight-on from the front. "
         "Position it in the left-center of the frame. Hook or post should "
         "point upward, top of frame."
     ),
     "ring_index": (
-        "Remove the Background"
         "Show the ring photographed from directly above/front, band facing "
         "the viewer, centered exactly in the middle of the frame, "
         "front-facing top-down view as if worn on an index finger."
     ),
     "ring_middle": (
-        "Remove the Background"
         "Show the ring photographed from directly above/front, band facing "
         "the viewer, centered exactly in the middle of the frame."
     ),
     "bangle": (
-        "Remove the Background. "
         "This asset is for a 2D virtual try-on that overlays onto the front of a "
         "wrist, so show ONLY the front-facing portion of the bangle that would be "
         "visible on the wrist — the front arc/curve of the band. DO NOT show the "
@@ -53,13 +51,24 @@ POSITION_INSTRUCTIONS = {
     ),
 }
 
-AR_BASE_INSTRUCTION = (
+# Step 1 (positioning): plain grey background, NOT transparent — that's step 2's job.
+AR_POSITION_BASE_INSTRUCTION = (
     "Do not redesign, resize, or alter the jewellery's shape, gemstones, "
     "engravings, or proportions — preserve the exact product exactly as "
-    "photographed. Only remove the background completely, leaving 100% "
-    "transparent pixels (alpha=0) around the product. No shadow, no "
-    "reflection, no watermark, no border. The product must fill "
-    "70-85% of the frame with even padding on all sides."
+    "photographed. Place it on a plain flat solid light-grey (#e0e0e0) "
+    "background with no props, no shadow, no reflection, no watermark, "
+    "no border. The product must fill 70-85% of the frame with even "
+    "padding on all sides."
+)
+
+# Step 2 (transparency only): takes step 1's grey-background output, removes it.
+# No positioning language here — step 1 already handled that.
+AR_TRANSPARENCY_INSTRUCTION = (
+    "Remove the background completely, leaving 100% transparent pixels "
+    "(alpha=0) everywhere except the jewellery product itself. Do not "
+    "redesign, resize, recolor, or alter the jewellery in any way — only "
+    "delete the background. No shadow, no reflection, no watermark, no "
+    "border, no added background of any kind."
 )
 
 
@@ -71,9 +80,15 @@ def _with_extra(prompt: str, extra: str | None) -> str:
     return f"{prompt}\n\nADDITIONAL INSTRUCTION FROM THE USER (follow it while keeping the product exact): {extra}"
 
 
-def build_ar_prompt(jtype: str, extra: str | None = None, category: str | None = None, sub_category: str | None = None) -> str:
+def build_ar_position_prompt(jtype: str, extra: str | None = None, category: str | None = None, sub_category: str | None = None) -> str:
+    """Step 1 — position the product on a plain grey background."""
     pos = POSITION_INSTRUCTIONS.get(jtype, POSITION_INSTRUCTIONS["necklace"])
-    return _with_extra(f"{pos} {AR_BASE_INSTRUCTION}", extra)
+    return _with_extra(f"{pos} {AR_POSITION_BASE_INSTRUCTION}", extra)
+
+
+def build_ar_transparency_prompt() -> str:
+    """Step 2 — strip the step-1 output's grey background to real transparency."""
+    return AR_TRANSPARENCY_INSTRUCTION
 
 
 def _category_background_guidance(category: str | None, sub_category: str | None = None) -> str:
