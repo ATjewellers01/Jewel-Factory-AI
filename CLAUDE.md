@@ -54,6 +54,13 @@ Matches the proven Colab notebook — **two OpenAI calls per `/transparent` requ
 1. **Step 1** (`TRANSPARENT_MODEL`, default `gpt-image-2`) — `build_ar_position_prompt()` positions the product on a plain solid light-grey (`#e0e0e0`) background. NOT transparent yet.
 2. **Step 2** (`TRANSPARENT_BG_MODEL`, default `gpt-image-1`) — `build_ar_transparency_prompt()` + the native `background="transparent"` API param strips step 1's grey background to real alpha transparency.
 
+> ⚠️ **`gpt-image-1` is being retired by OpenAI on 23 Oct 2026.** It is the ONLY model
+> confirmed to support the native `background="transparent"` param that Step 2 depends
+> on (`gpt-image-2` doesn't support it as of this writing). Before that date, re-test
+> whether `gpt-image-2` (or whatever succeeds `gpt-image-1`) has gained transparent-background
+> support and repoint `TRANSPARENT_BG_MODEL`; otherwise Step 2 (and the whole try-on
+> pipeline) breaks the day the model is retired.
+
 Why 2 steps + 2 models: a single-call version that only *asks* for transparency in
 the prompt text sometimes shipped an **opaque black background** instead (gpt-image
 occasionally fails to remove backgrounds cleanly, especially on complex/reflective
@@ -71,6 +78,29 @@ Old assets generated before this convention are full loops — **regenerate** th
 
 ## Quota / errors
 `/catalog`, `/transparent`, `/describe` call OpenAI. If OpenAI billing is exhausted they return **`429 insufficient_quota`** (the caller/proxy may surface it as 502). Fix = add OpenAI credit; no code change. `/embed/*` does NOT use OpenAI (local OpenCLIP) so it keeps working regardless.
+
+## Cost per generation (verified 2026-07-23, USD→INR ≈ ₹96.6)
+
+None of the three OpenAI-backed routes set a `quality=` param (only `size="1024x1024"`), so all
+image calls run on OpenAI's default **`quality="auto"`** — for our detailed, multi-instruction
+prompts this resolves to **High** in practice, not Medium.
+
+| Call | Model | Cost (High) | Cost (Medium, if forced) |
+|---|---|---|---|
+| Describe | gpt-4o | ≈ $0.004 (negligible) | same |
+| Catalog image | gpt-image-2 | $0.211 | $0.053 |
+| Try-on Step 1 (position) | gpt-image-2 | $0.211 | $0.053 |
+| Try-on Step 2 (transparent bg) | gpt-image-1 | $0.167 | $0.042 |
+
+- **"Generate All" (describe + catalog + both try-on steps, 4 calls):** ≈ **$0.59 (≈ ₹57)** at High,
+  ≈ $0.15 (≈ ₹15) at Medium.
+- **"Regenerate" per button:** Description ≈ ₹0.40 (negligible) · Catalog image ≈ ₹20 (High) / ₹5 (Medium)
+  · Try-On (2 calls) ≈ ₹36 (High) / ₹9 (Medium).
+- Prompt text length (ours run 60–580 tokens per call) barely affects cost — at these input-token
+  rates it's under ₹0.50 either way. **The image OUTPUT quality tier is the only real cost lever.**
+  If cost needs to come down, set `quality="medium"` explicitly in `catalog.py` and `transparent.py`
+  (both calls) — cuts "Generate All" from ≈ ₹57 to ≈ ₹15 per click (73%) with an acceptable
+  quality trade-off for jewellery product shots at this resolution.
 
 ## Auth (TWO schemes — deliberate)
 - OpenAI endpoints (`/catalog`, `/transparent`, `/describe`): header `x-api-key: <AI_FEATURES_API_KEY>` (only enforced if that env is set).
