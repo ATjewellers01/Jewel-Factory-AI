@@ -1,6 +1,6 @@
 """
 /describe — image + specs (category, sub-category, weight, purity) -> auto
-designName + website description. Uses a vision model (gpt-4o) and returns JSON.
+website description (no design name). Uses a vision model (gpt-4o) and returns JSON.
 """
 from __future__ import annotations
 
@@ -59,11 +59,7 @@ async def describe(
     except Exception as e:
         raise HTTPException(502, f"Describe failed: {e}")
 
-    name = str(parsed.get("designName", "")).strip()
     desc = str(parsed.get("description", "")).strip()
-    # Both are required — silently accepting a name-only (or desc-only) response
-    # lets an incomplete AI result through unnoticed. Fail loudly so the
-    # manufacturer sees a retry-able error instead of a blank field.
-    if not name or not desc:
-        raise HTTPException(502, f"Model returned incomplete result (designName={bool(name)}, description={bool(desc)}). Try again.")
-    return {"designName": name, "description": desc}
+    if not desc:
+        raise HTTPException(502, "Model returned empty description. Try again.")
+    return {"description": desc}
