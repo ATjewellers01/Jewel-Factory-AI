@@ -28,7 +28,7 @@ lib/
 routes/
   catalog.py       POST /catalog       raw image (+extraInstructions) -> studio catalog image (base64)
   transparent.py   POST /transparent   raw image + jewelleryType (+extra) -> transparent try-on PNG (base64)
-  describe.py      POST /describe       image + specs (+extra) -> { designName, description } (gpt-4o vision)
+  describe.py      POST /describe       image + specs (+extra) -> { description } (gpt-4o vision; no designName since 2026-07-30)
   embed.py         POST /embed/image|/embed/text|/embed/hybrid|/embed/image/batch -> OpenCLIP 512-d (visual search)
 Dockerfile · requirements.txt · README.md (HF YAML) · INTEGRATION.md · .env.example
 ```
@@ -39,7 +39,7 @@ Dockerfile · requirements.txt · README.md (HF YAML) · INTEGRATION.md · .env.
 |---|---|---|
 | `POST /catalog` | `image`, `extraInstructions?` | `{ imageBase64, mimeType }` |
 | `POST /transparent` | `image`, `jewelleryType`, `extraInstructions?` | `{ imageBase64, mimeType }` |
-| `POST /describe` | `image`, `category`, `subCategory`, `weight`, `purity`, `extraInstructions?` | `{ designName, description }` |
+| `POST /describe` | `image`, `category`, `subCategory`, `weight`, `purity`, `extraInstructions?` | `{ description }` (no `designName` — design names were removed from Jewel Factory 2026-07-30, product identity is the auto design number now) |
 | `POST /embed/image` | `file` | `{ dim, embedding }` |
 | `POST /embed/text` | JSON `{ text }` | `{ dim, embedding }` |
 | `POST /embed/hybrid` | `text?`, `weight`, `file?` | `{ dim, embedding }` |

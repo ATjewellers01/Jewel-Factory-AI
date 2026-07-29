@@ -20,16 +20,17 @@ Space can be retired.
 In `components/manufacturer/ProductForm.tsx`, add a **"✨ Generate with AI"** flow
 after the manufacturer picks a raw photo + category/sub-category/weight/purity:
 
-1. **Describe** (name + description):
+1. **Describe** (description only — design names were removed from Jewel Factory
+   2026-07-30; the auto design number is the sole product identifier now):
    `POST {AI_FEATURES_URL}/describe` (multipart: `image`, `category`, `subCategory`, `weight`, `purity`)
-   → `{ designName, description }` → prefill the form's Name + Description fields.
+   → `{ description }` → prefill the form's Description field.
 2. **Catalog image**:
    `POST {AI_FEATURES_URL}/catalog` (multipart: `image`)
-   → `{ imageBase64 }` → upload that PNG to Cloudinary (existing product-image flow)
+   → `{ imageBase64 }` → upload that PNG to S3 (existing product-image flow)
    → save as the product's catalog image.
 3. **Transparent try-on PNG**:
    `POST {AI_FEATURES_URL}/transparent` (multipart: `image`, `jewelleryType`)
-   → `{ imageBase64 }` → upload to Cloudinary (tryon bucket) → set `has_tryon=true`.
+   → `{ imageBase64 }` → upload to S3 (tryon bucket) → set `has_tryon=true`.
 
 The manufacturer reviews/edits everything, then Saves as normal. Nothing is
 auto-committed — AI just prefills.
