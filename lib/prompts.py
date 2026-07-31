@@ -2,6 +2,11 @@
 Prompts — ported verbatim from the proven Colab pipeline (catalog + AR position),
 plus a describe prompt for auto name + description. Don't casually reword these:
 the image prompts are tuned and working.
+
+EXCEPTION: CATALOG_PROMPT_TEMPLATE's product-fidelity wording was strengthened
+2026-07-31 (client-reported bleed between product colors/enamel and the
+background, plus visible product-design drift after catalog generation) —
+that block is intentionally NOT verbatim from the original Colab prompt.
 """
 
 import random
@@ -254,15 +259,22 @@ CATALOG_PROMPT_TEMPLATE = """
 You are a world-class luxury jewelry advertising photographer and creative director.
 
 TASK:
-Transform the uploaded jewelry product image into a premium luxury marketing advertisement.
+Transform the uploaded jewelry product image into a premium luxury marketing advertisement
+by changing ONLY the environment around the product — the product itself must be reproduced,
+not reimagined.
 
 STRICT RULES:
-- Preserve the EXACT jewelry design.
-- Do NOT change the shape, pattern, engraving, gemstone placement, chain style, or proportions.
-- Keep the original gold color and texture.
-- The jewelry must remain the hero of the image.
-- Use the uploaded product image as the reference.
-- Make it look like a real luxury product photoshoot.
+- This is the SAME physical product from the uploaded photo, not a reinterpretation or a
+  similar-looking piece. Every color, enamel/meenakari pattern, engraving line, gemstone,
+  and proportion must match the original pixel-for-pixel.
+- Do NOT alter, smooth, simplify, stylize, or repaint the enamel/meenakari colors and
+  patterns, engravings, or gemstone placement — reproduce them exactly as photographed,
+  stroke for stroke and color for color.
+- Do NOT change the shape, chain style, or proportions.
+- Keep the original gold color and texture exactly as photographed.
+- The jewelry must remain the hero of the image, completely unaltered — you are only
+  changing the background/environment/lighting around it, never the product pixels.
+- Make it look like a real luxury product photoshoot of THIS exact piece.
 
 STYLE:
 Minimal, elegant, premium, luxury, high-end jewelry campaign.
@@ -272,6 +284,11 @@ Use a soft beige, ivory, champagne, warm cream, or light marble luxury backgroun
 Include subtle luxury props like silk fabric, marble pedestal, soft flowers,
 dried baby's breath, elegant shadows, warm sunlight, premium studio lighting.
 Do NOT clutter the background.
+The background color palette must stay visually distinct and separated from the product's
+own colors (gold tone, enamel/meenakari colors, gemstone colors) — never choose a background
+shade close enough to blend with, camouflage, or reduce contrast against any part of the
+product. The product's outline and every internal color/pattern detail must stay clearly
+distinguishable from the background at a glance.
 
 LIGHTING:
 Professional luxury studio lighting. Soft diffused light. Natural gold reflections.
