@@ -115,25 +115,25 @@ def _category_background_guidance(category: str | None, sub_category: str | None
     # Every sub-category from lib/categories.ts has its own themed guidance
     backgrounds = {
         "bangles": {
-            "default": "Use a wrist form or elegant stand on a soft fabric surface (ivory, cream, or marble) with warm lighting that emphasizes curves, texture, and movement.",
+            "default": "Use a wrist form or elegant stand on a cool stone/slate surface (grey, charcoal, or dusty sage) with directional lighting that emphasizes curves, texture, and movement.",
             "themes": {
-                "18k bangles": "Use rich, warm lighting highlighting premium quality, intricate detailing, and luxurious 18K gold finish.",
-                "antique bangle": "Use dramatic, moody lighting with antique props (vintage fabric, aged wood) emphasizing heritage aesthetic.",
-                "baby bangle": "Use delicate, gentle lighting with soft backgrounds showcasing the petite, refined nature of baby bangles.",
-                "fancy hmade bangle": "Use vibrant, multi-directional lighting highlighting decorative handmade elements and ornate details.",
-                "fusion bangle": "Use balanced lighting combining warm and cool tones to showcase the fusion of traditional and modern designs.",
-                "gajra bangle": "Use soft, romantic lighting with floral props emphasizing the bangle's floral-inspired motifs.",
-                "hollow bangles": "Use directional side lighting showcasing craftsmanship and creating elegant shadows on hollow design.",
-                "indo italian bangle": "Use sophisticated lighting blending warm European and rich Indian aesthetics.",
-                "machine bangles": "Use clean, professional lighting emphasizing precision, symmetry, and machine-perfect craftsmanship.",
-                "plaster bangle": "Use soft, even lighting that showcases the unique texture and delicate nature of plaster bangles.",
-                "reli bangle": "Use warm, layered lighting emphasizing the ornate Reli patterns and detailed craftsmanship.",
-                "top seller bangles": "Use showcase lighting that highlights why these are bestsellers—clear, flattering, crowd-pleasing aesthetics.",
-                "v- pacheli bangle": "Use elegant, flowing lighting emphasizing the V-shaped Pacheli design and its graceful curves.",
+                "18k bangles": "Use directional lighting against a deep charcoal or slate backdrop highlighting premium quality, intricate detailing, and luxurious 18K gold finish.",
+                "antique bangle": "Use dramatic, moody lighting on a deep charcoal or dark stone backdrop with antique props (aged wood, dark fabric) emphasizing heritage aesthetic.",
+                "baby bangle": "Use delicate, gentle lighting against a soft cool-grey background showcasing the petite, refined nature of baby bangles.",
+                "fancy hmade bangle": "Use vibrant, multi-directional lighting against a cool slate or sage backdrop highlighting decorative handmade elements and ornate details.",
+                "fusion bangle": "Use balanced lighting on a muted cool-toned backdrop combining directional accents to showcase the fusion of traditional and modern designs.",
+                "gajra bangle": "Use soft, romantic lighting against a dusty sage or blue-grey background with floral props emphasizing the bangle's floral-inspired motifs.",
+                "hollow bangles": "Use directional side lighting on a cool slate/stone backdrop showcasing craftsmanship and creating elegant shadows on hollow design.",
+                "indo italian bangle": "Use sophisticated lighting on a deep charcoal or cool stone backdrop blending European and rich Indian aesthetics.",
+                "machine bangles": "Use clean, professional lighting against a cool grey backdrop emphasizing precision, symmetry, and machine-perfect craftsmanship.",
+                "plaster bangle": "Use soft, even lighting against a cool dove-grey background that showcases the unique texture and delicate nature of plaster bangles.",
+                "reli bangle": "Use layered directional lighting on a deep charcoal or slate backdrop emphasizing the ornate Reli patterns and detailed craftsmanship.",
+                "top seller bangles": "Use showcase lighting against a cool slate/charcoal backdrop that highlights why these are bestsellers—clear, flattering, crowd-pleasing aesthetics.",
+                "v- pacheli bangle": "Use elegant, flowing directional lighting on a cool stone backdrop emphasizing the V-shaped Pacheli design and its graceful curves.",
             }
         },
         "earrings": {
-            "default": "Use subtle fabric backdrop (silk/velvet in ivory, beige, champagne) with soft side lighting emphasizing details and sparkle.",
+            "default": "Use subtle fabric backdrop (velvet in charcoal, slate, or deep sage) with soft side lighting emphasizing details and sparkle.",
             "themes": {
                 "chandbali": "Use warm directional lighting highlighting the crescent moon design and ornate detailing.",
                 "jhumki": "Use dramatic side lighting with elegant props showcasing jhumki's dangles and movement.",
@@ -143,7 +143,7 @@ def _category_background_guidance(category: str | None, sub_category: str | None
             }
         },
         "rings": {
-            "default": "Use luxury ring holder or marble pedestal with focused warm lighting showcasing band details.",
+            "default": "Use luxury ring holder or dark stone pedestal with focused directional lighting showcasing band details.",
             "themes": {
                 "couple ring": "Use paired display with warm matching lighting showcasing complementary designs together.",
                 "gents ring": "Use bold strong lighting emphasizing masculine design and substantial presence.",
@@ -151,7 +151,7 @@ def _category_background_guidance(category: str | None, sub_category: str | None
             }
         },
         "set": {
-            "default": "Use elegant display setup on soft background with warm even lighting showcasing all pieces as cohesive collection.",
+            "default": "Use elegant display setup on a cool-toned (slate/charcoal/sage) background with even lighting showcasing all pieces as cohesive collection.",
             "themes": {
                 "antique set": "Use vintage props and moody warm lighting emphasizing heritage aesthetic of entire collection.",
                 "chain set": "Use flowing layout with directional lighting emphasizing chain components and connections.",
@@ -163,14 +163,14 @@ def _category_background_guidance(category: str | None, sub_category: str | None
             }
         },
         "bracelet": {
-            "default": "Use bracelet stand or graceful display on soft background with warm lighting capturing movement and texture.",
+            "default": "Use bracelet stand or graceful display on a cool-toned (slate/charcoal/stone) background with directional lighting capturing movement and texture.",
             "themes": {
                 "gents bracelet / kada": "Use bold strong lighting emphasizing masculine craftsmanship and substantial design.",
                 "ladies bracelet": "Use soft elegant lighting with refined props highlighting delicate details and femininity.",
             }
         },
         "pendants": {
-            "default": "Use luxury pendant stand or necklace form with warm focused lighting centering pendant as focal point.",
+            "default": "Use luxury pendant stand or necklace form against a cool-toned (charcoal/slate) background with focused lighting centering pendant as focal point.",
             "themes": {
                 "dorla pendants": "Use directional lighting emphasizing pendant's hanging position and ornate details.",
                 "double hook pendants": "Use warm lighting showcasing dual-hook design and balanced aesthetic.",
@@ -185,25 +185,25 @@ def _category_background_guidance(category: str | None, sub_category: str | None
             }
         },
         "chain": {
-            "default": "Use flowing display or elegant drape on soft background with directional lighting highlighting links and craftsmanship.",
+            "default": "Use flowing display or elegant drape on a cool-toned (slate/charcoal) background with directional lighting highlighting links and craftsmanship.",
         },
         "mangalsutra": {
-            "default": "Use luxurious display on soft delicate background with warm intimate lighting emphasizing significance.",
+            "default": "Use luxurious display on a cool-toned deep background with focused intimate lighting emphasizing significance.",
         },
         "nath / nose ring": {
-            "default": "Use close-up intimate display with soft lighting emphasizing delicate design and placement.",
+            "default": "Use close-up intimate display on a cool-toned background with soft lighting emphasizing delicate design and placement.",
         },
         "bindiya / mangtika": {
-            "default": "Use luxury bindi/mangtika form with warm focused lighting highlighting intricate detailing.",
+            "default": "Use luxury bindi/mangtika form against a cool-toned background with focused lighting highlighting intricate detailing.",
         },
         "ear chain kannoti": {
-            "default": "Use soft intimate lighting emphasizing the chain drape and delicate ear chain design.",
+            "default": "Use soft intimate lighting against a cool-toned background emphasizing the chain drape and delicate ear chain design.",
         },
         "jf coin": {
-            "default": "Use professional numismatic-style lighting showcasing coin detail, finish, and commemorative value.",
+            "default": "Use professional numismatic-style lighting on a deep charcoal or slate background showcasing coin detail, finish, and commemorative value.",
         },
         "watch": {
-            "default": "Use watch stand or elegant display with focused professional lighting showcasing face and craftsmanship.",
+            "default": "Use watch stand or elegant display on a cool-toned (slate/charcoal) background with focused professional lighting showcasing face and craftsmanship.",
             "themes": {
                 "gents watch": "Use bold strong lighting emphasizing masculine design and substantial presence.",
                 "ladies watch": "Use soft elegant lighting highlighting delicate details and refined aesthetic.",
@@ -222,7 +222,7 @@ def _category_background_guidance(category: str | None, sub_category: str | None
             return cat_data.get("default", backgrounds["bangles"]["default"])
 
     # Ultimate fallback
-    return "Use a soft, neutral background (ivory, cream, champagne, or light marble) with warm, elegant lighting that complements the jewelry's gold tone and luxurious aesthetic."
+    return "Use a cool-toned neutral background (soft grey, slate, charcoal, or muted sage) with elegant directional lighting that contrasts with and sets off the jewelry's gold tone."
 
 
 # Large, varied headline pool. build_catalog_prompt() shuffles + samples a
@@ -248,8 +248,8 @@ def build_catalog_prompt(extra: str | None = None, category: str | None = None, 
     base_prompt = CATALOG_PROMPT_TEMPLATE.format(headline_examples=_random_headline_examples())
     if category_guidance:
         base_prompt = base_prompt.replace(
-            "Use a soft beige, ivory, champagne, warm cream, or light marble luxury background.",
-            f"Use a soft beige, ivory, champagne, warm cream, or light marble luxury background. {category_guidance}"
+            "Pick whichever of these best suits the\npiece's mood, but it must read as a CLEARLY different color family from gold at a glance, not\nmerely a slightly different shade of the same warm tone.",
+            "Pick whichever of these best suits the\npiece's mood, but it must read as a CLEARLY different color family from gold at a glance, not\nmerely a slightly different shade of the same warm tone. " + category_guidance,
         )
     return _with_extra(base_prompt, extra)
 
@@ -280,21 +280,24 @@ STYLE:
 Minimal, elegant, premium, luxury, high-end jewelry campaign.
 
 BACKGROUND:
-Use a soft beige, ivory, champagne, warm cream, or light marble luxury background.
-Include subtle luxury props like silk fabric, marble pedestal, soft flowers,
-dried baby's breath, elegant shadows, warm sunlight, premium studio lighting.
-Do NOT clutter the background.
-The background color palette must stay visually distinct and separated from the product's
-own colors (gold tone, enamel/meenakari colors, gemstone colors) — never choose a background
-shade close enough to blend with, camouflage, or reduce contrast against any part of the
-product. This applies EVEN for plain gold-only jewelry with no enamel or gemstones: a warm
-gold-tone product against a warm beige/cream/champagne background is a common failure case
-where the two colors visually merge, especially at the product's edges and in shadowed areas
-— actively avoid this by using strong enough tonal/brightness contrast, deeper shadow, subtle
-rim lighting, or a slightly cooler/darker background value so the product's silhouette and
-every surface detail (facets, engravings, texture) stay sharply and instantly separable from
-the background at a glance, at every point along the product's outline, not just in the
-brightest part of the frame.
+Use a background whose color family CONTRASTS with gold, never matches it — warm
+beige/ivory/champagne/cream/gold-toned marble are BANNED background choices here because
+they sit in the same warm-gold color family as the jewelry itself and cause the product to
+visually blend into the background, especially at its edges and in shadowed areas. Instead,
+choose from cooler or deeper neutral tones such as: soft dove grey, cool slate/stone grey,
+deep charcoal, muted sage or eucalyptus green, dusty blue-grey, soft taupe-brown (noticeably
+darker/cooler than the gold, not a beige), or black. Pick whichever of these best suits the
+piece's mood, but it must read as a CLEARLY different color family from gold at a glance, not
+merely a slightly different shade of the same warm tone.
+Include subtle luxury props like silk or velvet fabric, a stone/marble pedestal, soft
+flowers, dried baby's breath, elegant shadows, premium studio lighting — all in tones that
+stay within the cooler/contrasting background family above, not warm gold/cream tones. Do
+NOT clutter the background.
+This rule applies to EVERY product regardless of type — plain gold, enamel/meenakari, or
+gemstone-set: the background must be clearly, unmistakably separated in color and brightness
+from the product's own colors along its ENTIRE outline, not just in the brightest part of the
+frame. If in doubt, make the background darker/cooler and the contrast stronger, never warmer
+or closer to gold.
 
 LIGHTING:
 Professional luxury studio lighting. Soft diffused light. Natural gold reflections.
