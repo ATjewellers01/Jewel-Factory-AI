@@ -287,8 +287,14 @@ Do NOT clutter the background.
 The background color palette must stay visually distinct and separated from the product's
 own colors (gold tone, enamel/meenakari colors, gemstone colors) — never choose a background
 shade close enough to blend with, camouflage, or reduce contrast against any part of the
-product. The product's outline and every internal color/pattern detail must stay clearly
-distinguishable from the background at a glance.
+product. This applies EVEN for plain gold-only jewelry with no enamel or gemstones: a warm
+gold-tone product against a warm beige/cream/champagne background is a common failure case
+where the two colors visually merge, especially at the product's edges and in shadowed areas
+— actively avoid this by using strong enough tonal/brightness contrast, deeper shadow, subtle
+rim lighting, or a slightly cooler/darker background value so the product's silhouette and
+every surface detail (facets, engravings, texture) stay sharply and instantly separable from
+the background at a glance, at every point along the product's outline, not just in the
+brightest part of the frame.
 
 LIGHTING:
 Professional luxury studio lighting. Soft diffused light. Natural gold reflections.
