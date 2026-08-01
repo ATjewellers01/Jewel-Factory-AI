@@ -119,14 +119,14 @@ def _category_background_guidance(category: str | None, sub_category: str | None
             "themes": {
                 "18k bangles": "Use rich, warm lighting against a deeper champagne or honey-beige backdrop highlighting premium quality, intricate detailing, and luxurious 18K gold finish.",
                 "antique bangle": "Use dramatic, moody warm lighting on a richer aged-ivory or warm taupe backdrop with antique props (vintage fabric, aged wood) emphasizing heritage aesthetic.",
-                "baby bangle": "Use delicate, gentle lighting against a soft but slightly deeper warm-beige background showcasing the petite, refined nature of baby bangles.",
+                "baby bangle": "Use delicate, gentle lighting against a deep, rich warm-beige background (not pale) showcasing the petite, refined nature of baby bangles.",
                 "fancy hmade bangle": "Use vibrant, multi-directional warm lighting against a richer champagne backdrop highlighting decorative handmade elements and ornate details.",
                 "fusion bangle": "Use balanced warm lighting on a deeper honey-toned backdrop combining warm and cool accents to showcase the fusion of traditional and modern designs.",
                 "gajra bangle": "Use soft, romantic warm lighting against a deeper warm-beige background with floral props emphasizing the bangle's floral-inspired motifs.",
                 "hollow bangles": "Use directional side lighting on a richer warm marble backdrop showcasing craftsmanship and creating elegant shadows on hollow design.",
                 "indo italian bangle": "Use sophisticated warm lighting on a deeper aged-ivory backdrop blending warm European and rich Indian aesthetics.",
                 "machine bangles": "Use clean, professional lighting against a deeper warm-beige backdrop emphasizing precision, symmetry, and machine-perfect craftsmanship.",
-                "plaster bangle": "Use soft, even lighting against a slightly deeper warm-cream background that showcases the unique texture and delicate nature of plaster bangles.",
+                "plaster bangle": "Use soft, even lighting against a deep, rich warm-beige background (not pale cream) that showcases the unique texture and delicate nature of plaster bangles.",
                 "reli bangle": "Use warm, layered lighting on a richer honey-beige backdrop emphasizing the ornate Reli patterns and detailed craftsmanship.",
                 "top seller bangles": "Use showcase lighting against a deeper warm champagne backdrop that highlights why these are bestsellers—clear, flattering, crowd-pleasing aesthetics.",
                 "v- pacheli bangle": "Use elegant, flowing warm lighting on a richer warm marble backdrop emphasizing the V-shaped Pacheli design and its graceful curves.",
@@ -222,7 +222,7 @@ def _category_background_guidance(category: str | None, sub_category: str | None
             return cat_data.get("default", backgrounds["bangles"]["default"])
 
     # Ultimate fallback
-    return "Use a soft, neutral warm background (a deeper ivory, champagne, or warm marble — not pale/light cream) with warm, elegant lighting that complements the jewelry's gold tone and luxurious aesthetic."
+    return "Use a deep, rich, neutral warm background (a rich ivory, champagne, or warm marble — NEVER pale, light, or near-white) with warm, elegant lighting that complements the jewelry's gold tone and luxurious aesthetic."
 
 
 # Large, varied headline pool. build_catalog_prompt() shuffles + samples a
@@ -248,8 +248,8 @@ def build_catalog_prompt(extra: str | None = None, category: str | None = None, 
     base_prompt = CATALOG_PROMPT_TEMPLATE.format(headline_examples=_random_headline_examples())
     if category_guidance:
         base_prompt = base_prompt.replace(
-            "in shadowed areas), NOT a dramatic contrast — this should still read as one cohesive, warm,\nluxury palette, just with the background pulled slightly darker/richer than the product.",
-            "in shadowed areas), NOT a dramatic contrast — this should still read as one cohesive, warm,\nluxury palette, just with the background pulled slightly darker/richer than the product. " + category_guidance,
+            "how elegant or \"on-brand\" a pale tone might otherwise seem.",
+            "how elegant or \"on-brand\" a pale tone might otherwise seem. " + category_guidance,
         )
     return _with_extra(base_prompt, extra)
 
@@ -280,23 +280,27 @@ STYLE:
 Minimal, elegant, premium, luxury, high-end jewelry campaign.
 
 BACKGROUND:
-Use a soft beige, ivory, champagne, warm cream, or light marble luxury background — stay
-within this warm, elegant family; do NOT switch to grey, charcoal, black, or any cool/dark
-palette, which looks harsh and off-brand for this campaign.
-Within that warm family, pick a shade that is noticeably DEEPER/RICHER than the product's own
-gold tone — e.g. a dusty warm taupe, a deeper champagne, a warmer aged-ivory, or a richer
-honey-beige marble — never the same pale, light, near-white cream that sits right on top of
-the gold's brightness. The goal is a gentle, tasteful separation (you should be able to tell
-where the product ends and the background begins at a glance, especially along its edges and
-in shadowed areas), NOT a dramatic contrast — this should still read as one cohesive, warm,
-luxury palette, just with the background pulled slightly darker/richer than the product.
+Stay within a warm, elegant luxury color family — do NOT switch to grey, charcoal, black, or
+any cool/dark palette, which looks harsh and off-brand for this campaign.
+MANDATORY shade requirement — this is not optional and applies to every single generation,
+no exceptions: the background MUST be a DEEP, RICH, SATURATED warm tone — for example a
+dusty warm taupe, a deep honey-beige, a rich aged-ivory, a warm terracotta-beige, or a
+deep champagne marble. The background's brightness/lightness must be CLEARLY, VISIBLY lower
+than the product's own gold tone — think "a shade or two darker than you'd instinctively
+pick," not a subtle tweak.
+BANNED, under all circumstances: pale cream, pale ivory, pale beige, light champagne, white,
+near-white, or any "soft"/"light"/"airy" background — these are the single most common
+failure mode (the product's gold and the pale background become indistinguishable, especially
+along the product's edges and in shadowed areas) and must never be produced, regardless of
+how elegant or "on-brand" a pale tone might otherwise seem.
 Include subtle luxury props like silk fabric, marble pedestal, soft flowers, dried baby's
-breath, elegant shadows, warm sunlight, premium studio lighting — all within the same warm
-family. Do NOT clutter the background.
+breath, elegant shadows, warm sunlight, premium studio lighting — all rendered in the same
+DEEP warm family described above, never pale. Do NOT clutter the background.
 This applies to EVERY product regardless of type — plain gold, enamel/meenakari, or
-gemstone-set: keep the overall look warm and luxurious, just avoid a background shade so pale
-and close to the gold that the product's outline and surface detail become hard to make out
-against it.
+gemstone-set — with zero exceptions: the product's outline and every surface detail (facets,
+engravings, enamel pattern) must stay sharply, unmistakably distinguishable from the
+background at every point along its outline, achieved ONLY via the deep/rich background shade
+described above.
 
 LIGHTING:
 Professional luxury studio lighting. Soft diffused light. Natural gold reflections.
