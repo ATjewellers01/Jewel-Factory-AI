@@ -248,13 +248,13 @@ def build_catalog_prompt(extra: str | None = None, category: str | None = None, 
     base_prompt = CATALOG_PROMPT_TEMPLATE.format(headline_examples=_random_headline_examples())
     if category_guidance:
         anchor = (
-            "gold, enamel/meenakari, or gemstone-set: always the exact same #fdf3e8 background, no matter\n"
+            "gold, enamel/meenakari, or gemstone-set: always the exact same #fffbf7 background, no matter\n"
             "what look might otherwise seem to suit the specific piece."
         )
         base_prompt = base_prompt.replace(
             anchor,
             anchor
-            + "\nPROPS / SETUP for this specific category (the background COLOR stays exactly #fdf3e8 — "
+            + "\nPROPS / SETUP for this specific category (the background COLOR stays exactly #fffbf7 — "
             "this only changes the props, staging and lighting mood): " + category_guidance,
         )
     return _with_extra(base_prompt, extra)
@@ -288,14 +288,14 @@ Minimal, elegant, premium, luxury, high-end jewelry campaign.
 BACKGROUND:
 MANDATORY EXACT BACKGROUND COLOR — this is not optional and applies to every single
 generation, for EVERY category and sub-category of jewelry with zero exceptions:
-the background base color must be the exact off-white ivory hex #fdf3e8 (RGB 253, 243, 232).
+the background base color must be the exact soft near-white ivory hex #fffbf7 (RGB 255, 251, 247).
 Every surface in the environment — the marble slab, the silk drape, the pedestal, the fabric
-backdrop, the tray — must be that same #fdf3e8 off-white ivory. Do not shift it, do not
-re-interpret it, do not "improve" it: sample the color #fdf3e8 and use it.
-The only permitted deviation from #fdf3e8 is the natural light-and-shadow falloff of a real
+backdrop, the tray — must be that same #fffbf7 soft near-white ivory. Do not shift it, do not
+re-interpret it, do not "improve" it: sample the color #fffbf7 and use it.
+The only permitted deviation from #fffbf7 is the natural light-and-shadow falloff of a real
 photograph: gentle veining in the marble, soft fold-shadows in the silk, and a soft cast
 shadow under the product — all of which are just slightly lighter or slightly darker
-neutral shades OF #fdf3e8, never a different hue. This subtle variation is what keeps the
+neutral shades OF #fffbf7, never a different hue. This subtle variation is what keeps the
 product's outline and every surface detail sharply distinguishable from the background at
 every point along its outline, without ever making the scene look dim or tinted.
 BANNED, under all circumstances, for every category: any strongly yellow, golden, honey,
@@ -304,14 +304,17 @@ caramel, amber, brown, tan, champagne, or terracotta background — a background
 must never be produced.
 ALSO BANNED, equally strictly: cool grey, slate, charcoal, blue-tinted, or any background that
 reads as moody/dark/overcast — that is the OPPOSITE failure and just as wrong.
-ALSO BANNED: flat blown-out pure white (#ffffff) with no tonal variation at all.
-The background must stay exactly #fdf3e8 — bright, clean, airy — throughout the whole frame.
+#fffbf7 is very close to pure white, but it is NOT pure white and must not be rendered as a
+flat, blown-out, textureless #ffffff void: the marble veining, the silk fold-shadows and the
+soft cast shadow under the product must always remain clearly visible, so the product's
+outline and every surface detail stay sharply readable against the background.
+The background must stay exactly #fffbf7 — bright, clean, airy — throughout the whole frame.
 Include subtle luxury props like silk fabric, a marble pedestal, soft flowers, dried baby's
-breath, and soft natural shadows — all rendered in that same exact #fdf3e8 off-white ivory.
+breath, and soft natural shadows — all rendered in that same exact #fffbf7 soft near-white ivory.
 Do NOT clutter the background.
 This applies to EVERY product and EVERY category/sub-category regardless of type — bangles,
 earrings, rings, sets, bracelets, pendants, chains, mangalsutra, watches, everything — plain
-gold, enamel/meenakari, or gemstone-set: always the exact same #fdf3e8 background, no matter
+gold, enamel/meenakari, or gemstone-set: always the exact same #fffbf7 background, no matter
 what look might otherwise seem to suit the specific piece.
 
 LIGHTING:
