@@ -115,98 +115,98 @@ def _category_background_guidance(category: str | None, sub_category: str | None
     # Every sub-category from lib/categories.ts has its own themed guidance
     backgrounds = {
         "bangles": {
-            "default": "Use a wrist form or elegant stand on a neutral light-grey/white-stone surface (never yellow/brown/champagne-toned) with directional lighting that emphasizes curves, texture, and movement.",
+            "default": "Use a wrist form or elegant stand on a soft warm-white silk surface (never yellow/brown/champagne-toned) with directional lighting that emphasizes curves, texture, and movement.",
             "themes": {
-                "18k bangles": "Use directional lighting against a neutral light-grey/white-marble backdrop highlighting premium quality, intricate detailing, and luxurious 18K gold finish.",
-                "antique bangle": "Use dramatic, moody lighting on a neutral grey-stone backdrop with antique props (aged wood, muted-grey fabric — not warm-toned) emphasizing heritage aesthetic.",
-                "baby bangle": "Use delicate, gentle lighting against a neutral light-grey background showcasing the petite, refined nature of baby bangles.",
-                "fancy hmade bangle": "Use vibrant, multi-directional lighting against a neutral white-stone backdrop highlighting decorative handmade elements and ornate details.",
-                "fusion bangle": "Use balanced lighting on a neutral grey-marble backdrop combining directional accents to showcase the fusion of traditional and modern designs.",
-                "gajra bangle": "Use soft, romantic lighting against a neutral light-grey background with floral props emphasizing the bangle's floral-inspired motifs.",
-                "hollow bangles": "Use directional side lighting on a neutral white-stone backdrop showcasing craftsmanship and creating elegant shadows on hollow design.",
-                "indo italian bangle": "Use sophisticated lighting on a neutral grey-marble backdrop blending European and rich Indian aesthetics.",
-                "machine bangles": "Use clean, professional lighting against a neutral light-grey backdrop emphasizing precision, symmetry, and machine-perfect craftsmanship.",
-                "plaster bangle": "Use soft, even lighting against a neutral light-grey background that showcases the unique texture and delicate nature of plaster bangles.",
-                "reli bangle": "Use layered directional lighting on a neutral white-stone backdrop emphasizing the ornate Reli patterns and detailed craftsmanship.",
-                "top seller bangles": "Use showcase lighting against a neutral grey-marble backdrop that highlights why these are bestsellers—clear, flattering, crowd-pleasing aesthetics.",
-                "v- pacheli bangle": "Use elegant, flowing directional lighting on a neutral white-stone backdrop emphasizing the V-shaped Pacheli design and its graceful curves.",
+                "18k bangles": "Use directional lighting against a warm-white marble pedestal highlighting premium quality, intricate detailing, and luxurious 18K gold finish.",
+                "antique bangle": "Use dramatic lighting on a soft ivory fabric backdrop with antique props (aged wood, soft ivory silk) emphasizing heritage aesthetic.",
+                "baby bangle": "Use delicate, gentle lighting against a soft warm-white silk backdrop showcasing the petite, refined nature of baby bangles.",
+                "fancy hmade bangle": "Use vibrant, multi-directional lighting against a warm-white fabric backdrop highlighting decorative handmade elements and ornate details.",
+                "fusion bangle": "Use balanced lighting on a warm-white marble stand combining directional accents to showcase the fusion of traditional and modern designs.",
+                "gajra bangle": "Use soft, romantic lighting against a soft warm-white silk backdrop with floral props emphasizing the bangle's floral-inspired motifs.",
+                "hollow bangles": "Use directional side lighting on a warm-white wrist-form stand showcasing craftsmanship and creating elegant shadows on hollow design.",
+                "indo italian bangle": "Use sophisticated lighting on a warm-white marble pedestal blending European and rich Indian aesthetics.",
+                "machine bangles": "Use clean, professional lighting against a warm-white fabric backdrop emphasizing precision, symmetry, and machine-perfect craftsmanship.",
+                "plaster bangle": "Use soft, even lighting against a soft warm-white silk backdrop that showcases the unique texture and delicate nature of plaster bangles.",
+                "reli bangle": "Use layered directional lighting on a warm-white fabric backdrop emphasizing the ornate Reli patterns and detailed craftsmanship.",
+                "top seller bangles": "Use showcase lighting against a warm-white marble pedestal that highlights why these are bestsellers—clear, flattering, crowd-pleasing aesthetics.",
+                "v- pacheli bangle": "Use elegant, flowing directional lighting on a warm-white silk backdrop emphasizing the V-shaped Pacheli design and its graceful curves.",
             }
         },
         "earrings": {
-            "default": "Use subtle fabric backdrop (silk/velvet in neutral grey or off-white — never champagne/gold-toned) with soft side lighting emphasizing details and sparkle.",
+            "default": "Use subtle fabric backdrop (silk/velvet in soft warm-white or ivory — never champagne/gold-toned) with soft side lighting emphasizing details and sparkle.",
             "themes": {
-                "chandbali": "Use directional lighting against a neutral grey-stone backdrop highlighting the crescent moon design and ornate detailing.",
-                "jhumki": "Use dramatic side lighting with elegant neutral-toned props showcasing jhumki's dangles and movement.",
-                "kannoti earring": "Use soft intimate lighting against a neutral grey backdrop highlighting the chain and ear chain details.",
-                "tops": "Use close-up focused lighting against a neutral white-stone backdrop emphasizing stud details and gemstone work.",
-                "v chain earring": "Use flowing directional lighting against a neutral grey-marble backdrop showcasing the V-shaped chain design and elegant drape.",
+                "chandbali": "Use directional lighting against a warm-white fabric backdrop highlighting the crescent moon design and ornate detailing.",
+                "jhumki": "Use dramatic side lighting with elegant warm-white props showcasing jhumki's dangles and movement.",
+                "kannoti earring": "Use soft intimate lighting against a warm-white silk backdrop highlighting the chain and ear chain details.",
+                "tops": "Use close-up focused lighting against a warm-white velvet backdrop emphasizing stud details and gemstone work.",
+                "v chain earring": "Use flowing directional lighting against a warm-white silk backdrop showcasing the V-shaped chain design and elegant drape.",
             }
         },
         "rings": {
-            "default": "Use luxury ring holder or a neutral light-grey/white-marble pedestal with focused directional lighting showcasing band details.",
+            "default": "Use a luxury ring holder or warm-white marble pedestal with focused directional lighting showcasing band details.",
             "themes": {
-                "couple ring": "Use paired display on a neutral grey-marble backdrop with matching lighting showcasing complementary designs together.",
-                "gents ring": "Use bold strong lighting against a neutral stone backdrop emphasizing masculine design and substantial presence.",
-                "ladies ring": "Use soft romantic lighting against a neutral light-grey backdrop with refined props enhancing femininity and delicate details.",
+                "couple ring": "Use a paired ring-holder display on a warm-white marble pedestal with matching lighting showcasing complementary designs together.",
+                "gents ring": "Use bold strong lighting against a warm-white stone pedestal emphasizing masculine design and substantial presence.",
+                "ladies ring": "Use soft romantic lighting against a warm-white silk backdrop with refined props enhancing femininity and delicate details.",
             }
         },
         "set": {
-            "default": "Use elegant display setup on a neutral light-grey/white-stone background with even lighting showcasing all pieces as cohesive collection.",
+            "default": "Use an elegant multi-piece display stand on a warm-white silk backdrop with even lighting showcasing all pieces as cohesive collection.",
             "themes": {
-                "antique set": "Use vintage props and moody lighting on a neutral grey-stone backdrop emphasizing heritage aesthetic of entire collection.",
-                "chain set": "Use flowing layout with directional lighting against a neutral white-marble backdrop emphasizing chain components and connections.",
-                "choker set": "Use close-up intimate lighting against a neutral grey backdrop emphasizing neckline placement and complete aesthetic.",
-                "long set": "Use flowing fabric or full-length display on a neutral light-grey backdrop with directional lighting showing length and drape.",
-                "pendent set": "Use focused lighting against a neutral white-stone backdrop emphasizing pendant as focal point while showcasing companion pieces.",
-                "short set": "Use compact focused display on a neutral grey-marble backdrop with lighting highlighting all pieces in unified frame.",
-                "turkish set": "Use rich, ornate lighting against a neutral stone backdrop emphasizing the Turkish design elements and intricate craftsmanship.",
+                "antique set": "Use vintage props and dramatic lighting on a warm-white fabric backdrop emphasizing heritage aesthetic of entire collection.",
+                "chain set": "Use a flowing layout on a warm-white silk backdrop with directional lighting emphasizing chain components and connections.",
+                "choker set": "Use a mannequin-neck display or close-up intimate lighting against a warm-white backdrop emphasizing neckline placement and complete aesthetic.",
+                "long set": "Use flowing fabric or full-length display on a warm-white silk backdrop with directional lighting showing length and drape.",
+                "pendent set": "Use a necklace-form display on a warm-white marble pedestal, focused lighting emphasizing pendant as focal point while showcasing companion pieces.",
+                "short set": "Use a compact focused display on a warm-white marble pedestal with lighting highlighting all pieces in unified frame.",
+                "turkish set": "Use rich, ornate lighting against a warm-white fabric backdrop emphasizing the Turkish design elements and intricate craftsmanship.",
             }
         },
         "bracelet": {
-            "default": "Use bracelet stand or graceful display on a neutral light-grey/white-stone background with directional lighting capturing movement and texture.",
+            "default": "Use a bracelet stand or graceful wrist-form display on a warm-white silk backdrop with directional lighting capturing movement and texture.",
             "themes": {
-                "gents bracelet / kada": "Use bold strong lighting against a neutral stone backdrop emphasizing masculine craftsmanship and substantial design.",
-                "ladies bracelet": "Use soft elegant lighting against a neutral light-grey backdrop with refined props highlighting delicate details and femininity.",
+                "gents bracelet / kada": "Use bold strong lighting against a warm-white stone pedestal emphasizing masculine craftsmanship and substantial design.",
+                "ladies bracelet": "Use soft elegant lighting against a warm-white silk backdrop with refined props highlighting delicate details and femininity.",
             }
         },
         "pendants": {
-            "default": "Use luxury pendant stand or necklace form against a neutral light-grey/white-marble background with focused lighting centering pendant as focal point.",
+            "default": "Use a luxury pendant stand or necklace form against a warm-white marble pedestal with focused lighting centering pendant as focal point.",
             "themes": {
-                "dorla pendants": "Use directional lighting against a neutral grey-stone backdrop emphasizing pendant's hanging position and ornate details.",
-                "double hook pendants": "Use lighting against a neutral white-marble backdrop showcasing dual-hook design and balanced aesthetic.",
-                "single hook pendants": "Use focused lighting against a neutral light-grey backdrop highlighting hook mechanism and main design.",
+                "dorla pendants": "Use directional lighting against a warm-white fabric backdrop emphasizing pendant's hanging position and ornate details.",
+                "double hook pendants": "Use lighting against a warm-white marble pedestal showcasing dual-hook design and balanced aesthetic.",
+                "single hook pendants": "Use focused lighting against a warm-white silk backdrop highlighting hook mechanism and main design.",
             }
         },
         "men's collection": {
-            "default": "Use bold, professional display on a neutral grey-stone background with strong masculine lighting showcasing premium craftsmanship.",
+            "default": "Use a bold, professional display stand on a warm-white fabric backdrop with strong masculine lighting showcasing premium craftsmanship.",
             "themes": {
-                "belt buckle": "Use focused lighting against a neutral stone backdrop emphasizing the buckle's design, texture, and masculine presence.",
-                "cufflinks": "Use close-up detailed lighting against a neutral white-marble backdrop showcasing intricate cufflink design and precious metalwork.",
+                "belt buckle": "Use focused lighting against a warm-white stone pedestal emphasizing the buckle's design, texture, and masculine presence.",
+                "cufflinks": "Use close-up detailed lighting against a warm-white velvet tray backdrop showcasing intricate cufflink design and precious metalwork.",
             }
         },
         "chain": {
-            "default": "Use flowing display or elegant drape on a neutral light-grey/white-stone background with directional lighting highlighting links and craftsmanship.",
+            "default": "Use a flowing display or elegant drape on a warm-white silk backdrop with directional lighting highlighting links and craftsmanship.",
         },
         "mangalsutra": {
-            "default": "Use luxurious display on a neutral light-grey/white-marble background with focused intimate lighting emphasizing significance.",
+            "default": "Use a luxurious necklace-form display on a warm-white silk backdrop with focused intimate lighting emphasizing significance.",
         },
         "nath / nose ring": {
-            "default": "Use close-up intimate display on a neutral light-grey background with soft lighting emphasizing delicate design and placement.",
+            "default": "Use a close-up intimate display on a warm-white velvet backdrop with soft lighting emphasizing delicate design and placement.",
         },
         "bindiya / mangtika": {
-            "default": "Use luxury bindi/mangtika form against a neutral light-grey/white-stone background with focused lighting highlighting intricate detailing.",
+            "default": "Use a luxury bindi/mangtika form against a warm-white fabric backdrop with focused lighting highlighting intricate detailing.",
         },
         "ear chain kannoti": {
-            "default": "Use soft intimate lighting against a neutral light-grey background emphasizing the chain drape and delicate ear chain design.",
+            "default": "Use soft intimate lighting against a warm-white silk backdrop emphasizing the chain drape and delicate ear chain design.",
         },
         "jf coin": {
-            "default": "Use professional numismatic-style lighting on a neutral grey-marble background showcasing coin detail, finish, and commemorative value.",
+            "default": "Use professional numismatic-style lighting on a warm-white velvet tray backdrop showcasing coin detail, finish, and commemorative value.",
         },
         "watch": {
-            "default": "Use watch stand or elegant display on a neutral light-grey/white-stone background with focused professional lighting showcasing face and craftsmanship.",
+            "default": "Use a watch stand or elegant display on a warm-white marble pedestal with focused professional lighting showcasing face and craftsmanship.",
             "themes": {
-                "gents watch": "Use bold strong lighting against a neutral stone backdrop emphasizing masculine design and substantial presence.",
-                "ladies watch": "Use soft elegant lighting against a neutral light-grey backdrop highlighting delicate details and refined aesthetic.",
+                "gents watch": "Use bold strong lighting against a warm-white stone pedestal emphasizing masculine design and substantial presence.",
+                "ladies watch": "Use soft elegant lighting against a warm-white silk backdrop highlighting delicate details and refined aesthetic.",
             }
         },
     }
@@ -222,7 +222,7 @@ def _category_background_guidance(category: str | None, sub_category: str | None
             return cat_data.get("default", backgrounds["bangles"]["default"])
 
     # Ultimate fallback
-    return "Use a neutral light-grey/white-stone marble background (never yellow, gold, brown, or champagne-toned) with elegant lighting that complements the jewelry's gold tone and luxurious aesthetic."
+    return "Use a soft warm-white silk or marble background (never yellow, gold, brown, or champagne-toned) with elegant lighting that complements the jewelry's gold tone and luxurious aesthetic."
 
 
 # Large, varied headline pool. build_catalog_prompt() shuffles + samples a
@@ -248,8 +248,8 @@ def build_catalog_prompt(extra: str | None = None, category: str | None = None, 
     base_prompt = CATALOG_PROMPT_TEMPLATE.format(headline_examples=_random_headline_examples())
     if category_guidance:
         base_prompt = base_prompt.replace(
-            "no matter what look might otherwise\nseem to suit the specific piece.",
-            "no matter what look might otherwise\nseem to suit the specific piece. " + category_guidance,
+            "family (never grey/charcoal/moody, never golden-brown/caramel-toned), no matter what look\nmight otherwise seem to suit the specific piece.",
+            "family (never grey/charcoal/moody, never golden-brown/caramel-toned), no matter what look\nmight otherwise seem to suit the specific piece. " + category_guidance,
         )
     return _with_extra(base_prompt, extra)
 
@@ -281,31 +281,34 @@ Minimal, elegant, premium, luxury, high-end jewelry campaign.
 
 BACKGROUND:
 MANDATORY color family — this is not optional and applies to every single generation, for
-EVERY category and sub-category of jewelry with zero exceptions: use a NEUTRAL, COOL-NEUTRAL
-light-grey / white-stone / marble color family — think a clean white-grey marble countertop,
-soft dove-grey stone, or off-white silk with a neutral (not warm-yellow) undertone. This is
-the ONLY acceptable background family, regardless of what the product itself looks like.
-BANNED, under all circumstances, for every category: any yellow, golden, honey, caramel,
-amber, brown, tan, terracotta, or warm-brown/warm-yellow-toned background — even a "deep" or
-"rich" version of these is banned. A background that reads as "sepia," "toffee-toned," or
-like the whole image has a warm-yellow filter over it is a FAILURE and must never be produced.
-The background's own hue must be neutral/grey-toned, NOT a darker or richer shade of yellow,
-gold, or brown.
-Also banned: pale/near-white/washed-out marble or fabric so light it has no visible texture or
-tonal variation — the marble/stone should have natural grey veining and soft shadow variation,
-not be a flat white void, and not blend with the product either. The background must be light
-enough to read as clean white-grey marble, but with enough natural shadow/tonal depth (grey
-veining, soft cast shadows from the props) that the product's outline and every surface detail
-stay sharply, unmistakably distinguishable from it at every point along its outline.
-Include subtle luxury props like silk fabric (off-white or soft grey, never gold/champagne/
-caramel-toned), a white or light-grey marble pedestal, soft flowers, dried baby's breath, and
-soft natural shadows — all within this same neutral light-grey/white-stone family. Do NOT
-clutter the background.
+EVERY category and sub-category of jewelry with zero exceptions: use a soft warm-white /
+light warm-beige / cream marble and silk color family — like a bright, airy jewelry-studio
+countertop with a warm-white marble slab and a soft ivory or cream silk drape. This should
+still read as bright and clean, NOT grey, NOT charcoal, NOT moody or dark — but it must NOT be
+completely flat, shadowless, blown-out pure white either. This is the ONLY acceptable
+background family, regardless of what the product itself looks like.
+BANNED, under all circumstances, for every category: any strongly yellow, golden, honey,
+caramel, amber, brown, tan, or terracotta background — a background that reads as "sepia,"
+"toffee-toned," or like the whole image has a warm-yellow filter over it is a FAILURE and
+must never be produced. A subtle warm-white/cream undertone in the marble and silk is
+correct and expected; a saturated golden-brown tone is not.
+ALSO BANNED, equally strictly: cool grey, slate, charcoal, or any background that reads as
+moody/dark/overcast — that is the OPPOSITE failure and just as wrong as the golden-brown one.
+The background must stay bright, warm-white/cream, and airy throughout.
+The marble/silk must still show gentle, natural tonal variation — faint grey-beige veining in
+the marble, soft natural fold-shadows in the silk, a soft cast shadow under the product —
+enough that it never reads as a single flat, textureless white/cream void. This subtle
+variation is what keeps the product's outline and every surface detail sharply distinguishable
+from the background at every point along its outline, without making the overall scene look
+grey or dim.
+Include subtle luxury props like soft ivory/cream silk fabric, a warm-white or light-beige
+marble pedestal, soft flowers, dried baby's breath, and soft natural shadows — all within this
+same bright, warm-white/cream family. Do NOT clutter the background.
 This applies to EVERY product and EVERY category/sub-category regardless of type — bangles,
 earrings, rings, sets, bracelets, pendants, chains, mangalsutra, watches, everything — plain
-gold, enamel/meenakari, or gemstone-set: always the same neutral light-grey/white-stone
-marble family, never yellow/gold/brown/caramel-toned, no matter what look might otherwise
-seem to suit the specific piece.
+gold, enamel/meenakari, or gemstone-set: always the same bright warm-white/cream marble
+family (never grey/charcoal/moody, never golden-brown/caramel-toned), no matter what look
+might otherwise seem to suit the specific piece.
 
 LIGHTING:
 Professional luxury studio lighting. Soft diffused light. Natural gold reflections.
