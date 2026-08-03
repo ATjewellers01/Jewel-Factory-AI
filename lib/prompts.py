@@ -115,9 +115,9 @@ def _category_background_guidance(category: str | None, sub_category: str | None
     # Every sub-category from lib/categories.ts has its own themed guidance
     backgrounds = {
         "bangles": {
-            "default": "Use a wrist form or elegant stand on a silk surface with directional lighting that emphasizes curves, texture, and movement.",
+            "default": "Use a wrist form or elegant stand on a silk surface with directional lighting that emphasizes curves, texture, and movement. Keep the angle close to front-on so the full engraved pattern around the band stays visible — do not tilt so far that the far side of the band foreshortens or hides its design.",
             "themes": {
-                "18k bangles": "Use directional lighting against a marble pedestal highlighting premium quality, intricate detailing, and luxurious 18K gold finish.",
+                "premium bangles": "Use directional lighting against a marble pedestal highlighting premium quality, intricate detailing, and luxurious 18K gold finish.",
                 "antique bangle": "Use dramatic lighting on a fabric backdrop with antique props (aged wood, silk drape) emphasizing heritage aesthetic.",
                 "baby bangle": "Use delicate, gentle lighting against a silk backdrop showcasing the petite, refined nature of baby bangles.",
                 "fancy hmade bangle": "Use vibrant, multi-directional lighting against a fabric backdrop highlighting decorative handmade elements and ornate details.",
@@ -280,6 +280,13 @@ STRICT RULES:
 - Keep the original gold color and texture exactly as photographed.
 - The jewelry must remain the hero of the image, completely unaltered — you are only
   changing the background/environment/lighting around it, never the product pixels.
+- Photograph the product at a near-flat, mostly front-facing angle — NOT a steep 3D/oblique
+  perspective. For circular or banded items (bangles, bracelets, rings), the complete
+  engraved pattern/design running around the piece must stay clearly visible and
+  undistorted from edge to edge; never tilt or rotate the piece so far that part of its
+  design becomes foreshortened, compressed, or hidden on the far side. A dramatic artistic
+  angle is NOT worth sacrificing design visibility for — when in doubt, choose the flatter,
+  more legible angle.
 - Make it look like a real luxury product photoshoot of THIS exact piece.
 
 STYLE:
@@ -324,6 +331,9 @@ Premium jewelry photography. Ultra realistic.
 COMPOSITION:
 Center the jewelry perfectly. Keep lots of clean negative space. Balanced composition.
 Magazine-quality layout.
+Use a gentle, natural angle — avoid dramatic tilts or perspective distortion that would hide
+or compress any part of the product's design. The viewer should be able to see the complete
+pattern/engraving clearly, as if looking at it almost straight-on.
 
 TEXT:
 Very minimal. Maximum 2-4 words. Invent a FRESH headline inspired by THIS
