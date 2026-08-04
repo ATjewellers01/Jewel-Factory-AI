@@ -7,6 +7,11 @@ EXCEPTION: CATALOG_PROMPT_TEMPLATE's product-fidelity wording was strengthened
 2026-07-31 (client-reported bleed between product colors/enamel and the
 background, plus visible product-design drift after catalog generation) —
 that block is intentionally NOT verbatim from the original Colab prompt.
+
+Further strengthened 2026-08-04: client-reported blurry black ghost/residue
+of the original photo's wrist/cloth prop bleeding into the new background
+(the model wasn't told to fully erase non-product elements from the source
+photo) — added an explicit "remove hand/wrist/cloth completely" rule.
 """
 
 import random
@@ -288,6 +293,10 @@ STRICT RULES:
   angle is NOT worth sacrificing design visibility for — when in doubt, choose the flatter,
   more legible angle.
 - Make it look like a real luxury product photoshoot of THIS exact piece.
+- The uploaded photo may show the product on a hand, wrist, arm, mannequin, stand, or
+  wrapped in cloth/fabric — NONE of that may appear in the output, not even as a faint
+  shadow, blur, or ghost outline. Completely remove it and replace it with the background
+  described below. Only the jewelry piece itself carries over from the original photo.
 
 STYLE:
 Minimal, elegant, premium, luxury, high-end jewelry campaign.
