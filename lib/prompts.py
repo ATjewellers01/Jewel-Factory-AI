@@ -319,6 +319,16 @@ STRICT RULES:
   design becomes foreshortened, compressed, or hidden on the far side. A dramatic artistic
   angle is NOT worth sacrificing design visibility for — when in doubt, choose the flatter,
   more legible angle.
+- This "near-flat, front-facing" rule is about CAMERA ANGLE only — it does NOT mean the
+  product itself should look flat. For bangles, bracelets, and rings: the band is a real,
+  solid, ROUND/TUBULAR object with genuine thickness and a curved cross-section — it is
+  NOT a flat ribbon, cutout, or sticker. Even while the design is shown front-facing, the
+  band's surface must show believable roundness and depth: a natural highlight running
+  along the curve, soft shadow gradients as the metal curves away from the viewer at the
+  edges, and a visible sense of the band's thickness/profile — exactly like a real
+  photograph of a rounded metal bangle, never a flat, paper-thin, 2D-looking shape. A
+  bangle that reads as flat or ribbon-like is a FAILURE, exactly as serious as getting the
+  product's own color wrong.
 - Make it look like a real luxury product photoshoot of THIS exact piece.
 - MANDATORY, ZERO-EXCEPTION REMOVAL: everything this prompt defines as NOT THE PRODUCT —
   every hand, finger, wrist, arm, neck, mannequin, stand, hook, clip, and every scrap of
