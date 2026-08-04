@@ -12,6 +12,15 @@ Further strengthened 2026-08-04: client-reported blurry black ghost/residue
 of the original photo's wrist/cloth prop bleeding into the new background
 (the model wasn't told to fully erase non-product elements from the source
 photo) — added an explicit "remove hand/wrist/cloth completely" rule.
+
+Strengthened again same day after the issue persisted post-redeploy: the
+first pass's wording still competed against the "reproduce the product
+pixel-for-pixel" rule, which likely made the model conservative about
+erasing anything near the product's edge. Added an explicit definition of
+"the product" vs. "not the product" so the fidelity rule can't be read as
+covering hands/wrists/cloth, plus a zero-exception removal rule framed as
+a FAILURE condition (same severity framing as the BACKGROUND section's
+banned-color rules, which are proven to hold up).
 """
 
 import random
@@ -274,10 +283,20 @@ Transform the uploaded jewelry product image into a premium luxury marketing adv
 by changing ONLY the environment around the product — the product itself must be reproduced,
 not reimagined.
 
+DEFINITION — "THE PRODUCT" vs. "NOT THE PRODUCT" (read this first, it governs every rule below):
+"The product" means ONLY the physical metal/gemstone/enamel jewelry item itself — its
+outline, engravings, enamel/meenakari, gemstones, and metal surface. Everything else visible
+in the uploaded photo — any hand, finger, wrist, arm, neck, mannequin, display stand, hook,
+pin, clip, cloth, satin, velvet, or any other wrapping/fabric/prop — is, by this definition,
+NOT the product. This distinction is the single most important rule in this entire prompt:
+the strict pixel-fidelity rules below apply ONLY inside the product's own outline. They give
+you ZERO license to preserve, echo, soften, or partially retain ANY non-product element —
+doing so is treated exactly the same as getting the product's own color wrong: a FAILURE.
+
 STRICT RULES:
 - This is the SAME physical product from the uploaded photo, not a reinterpretation or a
   similar-looking piece. Every color, enamel/meenakari pattern, engraving line, gemstone,
-  and proportion must match the original pixel-for-pixel.
+  and proportion of THE PRODUCT (as defined above) must match the original pixel-for-pixel.
 - Do NOT alter, smooth, simplify, stylize, or repaint the enamel/meenakari colors and
   patterns, engravings, or gemstone placement — reproduce them exactly as photographed,
   stroke for stroke and color for color.
@@ -293,10 +312,18 @@ STRICT RULES:
   angle is NOT worth sacrificing design visibility for — when in doubt, choose the flatter,
   more legible angle.
 - Make it look like a real luxury product photoshoot of THIS exact piece.
-- The uploaded photo may show the product on a hand, wrist, arm, mannequin, stand, or
-  wrapped in cloth/fabric — NONE of that may appear in the output, not even as a faint
-  shadow, blur, or ghost outline. Completely remove it and replace it with the background
-  described below. Only the jewelry piece itself carries over from the original photo.
+- MANDATORY, ZERO-EXCEPTION REMOVAL: everything this prompt defines as NOT THE PRODUCT —
+  every hand, finger, wrist, arm, neck, mannequin, stand, hook, clip, and every scrap of
+  cloth/satin/velvet/fabric visible in the uploaded photo — must be removed with 100%
+  completeness and replaced by the background described below. This applies even where that
+  non-product element touches, overlaps, or sits directly behind the product's own outline —
+  the removal must go all the way to the product's true edge, with no leftover pixels of it
+  anywhere in the frame. A dark, blurred, soft-edged, or partial residue/ghost/shadow of a
+  wrist, hand, or cloth anywhere in the output — even faint, even small, even just at the
+  product's edge — is an explicit FAILURE of this generation, exactly as serious as getting
+  the product's own color wrong. When in doubt about how much of a non-product element to
+  erase, err on the side of erasing MORE of it, never less — it is never acceptable to leave
+  any of it "just in case" it might be part of the product.
 
 STYLE:
 Minimal, elegant, premium, luxury, high-end jewelry campaign.
