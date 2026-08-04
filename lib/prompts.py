@@ -21,6 +21,14 @@ erasing anything near the product's edge. Added an explicit definition of
 covering hands/wrists/cloth, plus a zero-exception removal rule framed as
 a FAILURE condition (same severity framing as the BACKGROUND section's
 banned-color rules, which are proven to hold up).
+
+2026-08-04, separate fix: client-reported the product looking small/distant
+in generated catalog images when the raw uploaded photo already had it small
+in frame — COMPOSITION had no minimum-size rule (only "keep negative space"),
+so a small source subject stayed small in the output. Added an explicit
+55-70%-of-frame sizing rule (mirrors AR_POSITION_BASE_INSTRUCTION's existing
+70-85% fill rule for try-on assets), telling the model to zoom/crop closer
+regardless of the source photo's framing.
 """
 
 import random
@@ -370,6 +378,12 @@ Magazine-quality layout.
 Use a gentle, natural angle — avoid dramatic tilts or perspective distortion that would hide
 or compress any part of the product's design. The viewer should be able to see the complete
 pattern/engraving clearly, as if looking at it almost straight-on.
+The jewelry must be the dominant visual element of the frame — it should fill roughly 55-70%
+of the frame's width or height, regardless of how small or distant it appeared in the
+uploaded photo. If the product looks small or far away in the source image, zoom in / crop
+closer so it reads as prominent and hero-sized in the output — never leave it looking small
+with excess empty space around it. The full design must still stay completely visible within
+the frame (do not crop off any part of the piece to achieve this).
 
 TEXT:
 Very minimal. Maximum 2-4 words. Invent a FRESH headline inspired by THIS
