@@ -45,13 +45,20 @@ explicit rule that bangles/kada/rings must always be a complete closed loop,
 telling the model to confidently extrapolate any hidden segment by
 continuing the established band shape/pattern rather than leaving a gap.
 
-2026-08-05, third bangle fix after the closed-loop rule above shipped: the
-loop was now closed, but the model started inventing a fake clasp/hinge/knob
-at the top of the band where the original was a plain continuous surface —
-an overcorrection from being told to "close the loop confidently." Added a
-rule forbidding any invented hardware (clasp, hinge, joint, screw, ball tip)
-on a bangle/kada's band unless that exact feature is visible at that exact
-spot in the source photo.
+2026-08-05, third bangle fix — SUPERSEDED by the next entry: initially
+diagnosed as the model inventing a fake clasp/hinge/knob and added a rule
+forbidding invented hardware. Client clarified the real cause was staging,
+not the model inventing hardware: a prop/stand was passing through the
+inside of the bangle's loop, visually breaking it.
+
+2026-08-05, fourth bangle fix (root cause): the bangle looked "cut" because
+the display prop/stand it rests on was placed so it passed through or
+occupied the bangle's own circular opening. Added a rule requiring any prop
+to support the bangle from OUTSIDE the closed loop only — never through or
+inside the ring's negative space — so the full circle including its inner
+opening stays visibly empty. Also softened the camera-angle rule from
+"near-flat" to a gentle three-quarter angle, so the band's roundness reads
+naturally without sacrificing front-facing design legibility.
 """
 
 import random
@@ -335,13 +342,23 @@ STRICT RULES:
 - Keep the original gold color and texture exactly as photographed.
 - The jewelry must remain the hero of the image, completely unaltered — you are only
   changing the background/environment/lighting around it, never the product pixels.
-- Photograph the product at a near-flat, mostly front-facing angle — NOT a steep 3D/oblique
-  perspective. For circular or banded items (bangles, bracelets, rings), the complete
-  engraved pattern/design running around the piece must stay clearly visible and
-  undistorted from edge to edge; never tilt or rotate the piece so far that part of its
-  design becomes foreshortened, compressed, or hidden on the far side. A dramatic artistic
-  angle is NOT worth sacrificing design visibility for — when in doubt, choose the flatter,
-  more legible angle.
+- Photograph the product at a gentle three-quarter angle — mostly front-facing so the
+  engraved pattern/design stays fully legible edge-to-edge, but with a slight tilt/turn
+  (not perfectly flat-on) so the viewer can naturally tell the piece is a real
+  three-dimensional rounded object, not a flat cutout. For circular or banded items
+  (bangles, bracelets, rings), never tilt or rotate the piece so far that any part of its
+  design becomes foreshortened, compressed, or hidden on the far side — a dramatic
+  artistic angle is NOT worth sacrificing design visibility for; when in doubt, choose
+  the flatter, more legible angle, but do not go so flat/frontal that the band's
+  roundness disappears.
+- For bangles/kada/bracelets specifically: whatever surface, stand, pedestal, or holder
+  the product rests on or leans against must support it only from OUTSIDE the closed
+  loop (e.g. resting against it from behind, or lying flat on a surface) — the prop must
+  NEVER pass through, appear inside, or occupy any part of the bangle's own circular
+  opening/negative space. A prop visible through or across the inside of the loop makes
+  the bangle read as cut/broken and is a FAILURE, exactly as serious as getting the
+  product's own color wrong. The full closed circle, including its inner opening, must
+  stay completely empty and clearly visible.
 - This "near-flat, front-facing" rule is about CAMERA ANGLE only — it does NOT mean the
   product itself should look flat. For bangles, bracelets, and rings: the band is a real,
   solid, ROUND/TUBULAR object with genuine thickness and a curved cross-section — it is
