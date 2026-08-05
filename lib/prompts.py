@@ -29,6 +29,21 @@ so a small source subject stayed small in the output. Added an explicit
 55-70%-of-frame sizing rule (mirrors AR_POSITION_BASE_INSTRUCTION's existing
 70-85% fill rule for try-on assets), telling the model to zoom/crop closer
 regardless of the source photo's framing.
+
+2026-08-05: client-reported generated bangles looking like a flat, paper-thin
+cutout instead of a real rounded metal band. Clarified that the existing
+"near-flat, front-facing angle" rule governs CAMERA ANGLE only, and added an
+explicit rule that the band itself must show genuine 3D roundness/thickness
+(highlight/shadow curve) regardless of angle.
+
+2026-08-05, separate fix: client-reported some generated bangles/kada coming
+out as an open "C"-shaped arc with a visible gap in the loop, instead of a
+complete closed circle — likely because the source photo's angle or an
+overlapping second piece obscured part of the band's circumference, and the
+model left that section unrendered rather than inferring it. Added an
+explicit rule that bangles/kada/rings must always be a complete closed loop,
+telling the model to confidently extrapolate any hidden segment by
+continuing the established band shape/pattern rather than leaving a gap.
 """
 
 import random
@@ -329,6 +344,17 @@ STRICT RULES:
   photograph of a rounded metal bangle, never a flat, paper-thin, 2D-looking shape. A
   bangle that reads as flat or ribbon-like is a FAILURE, exactly as serious as getting the
   product's own color wrong.
+- For bangles/kada/rings specifically: the band is a COMPLETE, CLOSED, unbroken circular
+  loop with no start or end point — it must NEVER be rendered as an open arc, a
+  "C"-shaped or horseshoe-shaped cuff, or a bracelet with a visible gap/opening anywhere
+  in its circumference, even if the uploaded photo's angle, a shadow, an overlapping
+  second piece, or a reflection makes part of the band hard to see. If any portion of the
+  closed loop isn't clearly visible in the source photo, extrapolate that missing
+  segment by continuing the SAME band shape, thickness, and pattern already established
+  elsewhere on the piece — closing the loop is a faithful continuation of the real
+  object's known geometry, not an invention, so do this confidently rather than leaving a
+  gap. A bangle/ring that reads as open, split, or missing a section of its round is a
+  FAILURE, exactly as serious as getting the product's own color wrong.
 - Make it look like a real luxury product photoshoot of THIS exact piece.
 - MANDATORY, ZERO-EXCEPTION REMOVAL: everything this prompt defines as NOT THE PRODUCT —
   every hand, finger, wrist, arm, neck, mannequin, stand, hook, clip, and every scrap of
