@@ -44,6 +44,14 @@ model left that section unrendered rather than inferring it. Added an
 explicit rule that bangles/kada/rings must always be a complete closed loop,
 telling the model to confidently extrapolate any hidden segment by
 continuing the established band shape/pattern rather than leaving a gap.
+
+2026-08-05, third bangle fix after the closed-loop rule above shipped: the
+loop was now closed, but the model started inventing a fake clasp/hinge/knob
+at the top of the band where the original was a plain continuous surface —
+an overcorrection from being told to "close the loop confidently." Added a
+rule forbidding any invented hardware (clasp, hinge, joint, screw, ball tip)
+on a bangle/kada's band unless that exact feature is visible at that exact
+spot in the source photo.
 """
 
 import random
@@ -355,6 +363,15 @@ STRICT RULES:
   object's known geometry, not an invention, so do this confidently rather than leaving a
   gap. A bangle/ring that reads as open, split, or missing a section of its round is a
   FAILURE, exactly as serious as getting the product's own color wrong.
+- Do NOT invent a clasp, hinge, joint, lock mechanism, screw, ball tip, or any other
+  hardware/break-point on a bangle/kada/bracelet's band unless that exact feature is
+  clearly visible at that exact location in the uploaded photo. Where the source photo
+  shows a plain, seamless, continuous band surface, the generated image must reproduce
+  that same plain continuous surface at that spot — do not add decorative knobs, beads,
+  segment lines, or an "opening" detail there just because bangles can sometimes open;
+  only reproduce hardware that is actually present in the source. Adding fabricated
+  hardware where the original was a smooth unbroken band is a FAILURE, exactly as
+  serious as getting the product's own color wrong.
 - Make it look like a real luxury product photoshoot of THIS exact piece.
 - MANDATORY, ZERO-EXCEPTION REMOVAL: everything this prompt defines as NOT THE PRODUCT —
   every hand, finger, wrist, arm, neck, mannequin, stand, hook, clip, and every scrap of
