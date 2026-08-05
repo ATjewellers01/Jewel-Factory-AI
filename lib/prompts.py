@@ -69,6 +69,15 @@ ends, rather than shrinking the whole piece to fit the full chain length in
 frame; for earrings (a pair), each earring must be individually large and
 detailed, not two small distant specks — the pair together must still hit
 the same 55-70% dominant-footprint target as any other category.
+
+2026-08-05, necklace fix SUPERSEDED (client corrected the requirement): the
+chain must NOT be cropped — the full chain-to-pendant length must stay
+visible, AND the pendant must still read as large/legible without zooming.
+Replaced the "crop the chain" guidance with a taller-than-usual frame-fill
+specifically for necklaces (~85-90% of frame HEIGHT, vs the general 55-70%),
+since a full uncropped necklace is a tall narrow shape — filling that much
+vertical space makes the whole piece (chain included) large in-frame, which
+keeps the pendant itself large and sharp without needing to cut anything off.
 """
 
 import random
@@ -465,14 +474,21 @@ closer so it reads as prominent and hero-sized in the output — never leave it 
 with excess empty space around it. The full design must still stay completely visible within
 the frame (do not crop off any part of the piece to achieve this).
 This sizing rule applies with EQUAL strictness to every category — necklaces and earrings
-have been generated too small in the past and must NOT repeat that mistake. For a necklace,
-the full chain/strand length may need to run close to the frame's edges (or curve/drape
-within it) so that the pendant/focal area itself still reads at a large, clearly detailed
-size — do not shrink the whole piece down just to fit the chain's length in frame; crop the
-chain ends if needed rather than making the pendant tiny. For earrings (shown as a pair),
-each earring must be individually large and detailed, not two small distant specks in a
-big empty frame — zoom in until the pair together still occupies the same 55-70% dominant
-footprint as any other category.
+have been generated too small in the past and must NOT repeat that mistake. For a necklace
+specifically: the ENTIRE piece — full chain/strand length from top to bottom, AND the
+pendant/focal area — must be visible with NOTHING cropped off; do not cut off the chain's
+ends to make the pendant look bigger. Instead, because a full necklace is a tall, narrow
+shape, use a taller vertical frame-fill than the general 55-70% rule: the necklace should
+run top-to-bottom through roughly 85-90% of the frame's height, filling nearly the entire
+vertical space (not just centered with generic padding). This makes the whole piece —
+chain included — read as large in-frame, which in turn keeps the pendant itself large,
+sharp, and clearly legible at a glance, with no zooming needed to make out its
+engraving/enamel detail. Getting this wrong — a small necklace floating in a mostly-empty
+square frame, chain and pendant both undersized — is a FAILURE, exactly as serious as
+getting the product's own color wrong. For earrings (shown as a pair), each earring must
+be individually large and detailed, not two small distant specks in a big empty frame —
+zoom in until the pair together still occupies the same 55-70% dominant footprint as any
+other category.
 
 TEXT:
 Very minimal. Maximum 2-4 words. Invent a FRESH headline inspired by THIS
