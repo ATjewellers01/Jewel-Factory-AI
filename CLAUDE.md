@@ -136,7 +136,10 @@ Render too (no `x-api-key` sent).
 - **OpenCLIP model (~350 MB) is LAZY-LOADED** on the first `/embed` call (not at boot),
   so `/catalog`/`/describe` stay fast. First `/embed` after a cold Space takes ~30–90s.
 - **The catalog/transparent prompts are tuned + proven** (ported verbatim from the
-  Colab pipeline). Don't casually reword them.
+  Colab pipeline). Don't casually reword them — `lib/prompts.py`'s own module
+  docstring is the authoritative changelog for every strengthening pass made since
+  (product-vs-prop bleed, small-product sizing, bangle roundness/closed-loop/prop-
+  placement fixes, necklace/earring sizing) — read it before touching STRICT RULES.
 - **`/embed/*` must keep the old embedder's contract** (path, multipart `file`,
   `{embedding}` shape, Bearer auth) — Jewel Factory depends on it unchanged.
 - **`verify_and_center`** crops the generated PNG to its non-transparent bbox and
