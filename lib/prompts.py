@@ -59,6 +59,16 @@ inside the ring's negative space — so the full circle including its inner
 opening stays visibly empty. Also softened the camera-angle rule from
 "near-flat" to a gentle three-quarter angle, so the band's roundness reads
 naturally without sacrificing front-facing design legibility.
+
+2026-08-05, separate fix: client-reported necklaces and earrings specifically
+(not just bangles) still coming out too small/distant despite the existing
+55-70%-of-frame COMPOSITION rule. Added category-specific guidance: for a
+necklace, the pendant/focal area must stay large and detailed even if that
+means letting the chain run to/past the frame edges or cropping the chain
+ends, rather than shrinking the whole piece to fit the full chain length in
+frame; for earrings (a pair), each earring must be individually large and
+detailed, not two small distant specks — the pair together must still hit
+the same 55-70% dominant-footprint target as any other category.
 """
 
 import random
@@ -454,6 +464,15 @@ uploaded photo. If the product looks small or far away in the source image, zoom
 closer so it reads as prominent and hero-sized in the output — never leave it looking small
 with excess empty space around it. The full design must still stay completely visible within
 the frame (do not crop off any part of the piece to achieve this).
+This sizing rule applies with EQUAL strictness to every category — necklaces and earrings
+have been generated too small in the past and must NOT repeat that mistake. For a necklace,
+the full chain/strand length may need to run close to the frame's edges (or curve/drape
+within it) so that the pendant/focal area itself still reads at a large, clearly detailed
+size — do not shrink the whole piece down just to fit the chain's length in frame; crop the
+chain ends if needed rather than making the pendant tiny. For earrings (shown as a pair),
+each earring must be individually large and detailed, not two small distant specks in a
+big empty frame — zoom in until the pair together still occupies the same 55-70% dominant
+footprint as any other category.
 
 TEXT:
 Very minimal. Maximum 2-4 words. Invent a FRESH headline inspired by THIS
