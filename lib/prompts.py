@@ -78,6 +78,16 @@ specifically for necklaces (~85-90% of frame HEIGHT, vs the general 55-70%),
 since a full uncropped necklace is a tall narrow shape — filling that much
 vertical space makes the whole piece (chain included) large in-frame, which
 keeps the pendant itself large and sharp without needing to cut anything off.
+
+2026-08-06: client-reported "Set" category (necklace + matching earrings
+together, e.g. an Antique Set) generating in a wide/horizontal layout instead
+of the tall/vertical orientation the necklace rule above already established
+for plain necklaces — the SET category wasn't explicitly covered by that
+rule, so the model defaulted to a landscape composition. Added an explicit
+clause: a Set is still fundamentally necklace-shaped, so the same tall
+vertical/portrait orientation and ~85-90% frame-height fill applies, with the
+matching earrings arranged below/beside the necklace's lower half rather
+than the whole set spread out sideways.
 """
 
 import random
@@ -488,7 +498,12 @@ square frame, chain and pendant both undersized — is a FAILURE, exactly as ser
 getting the product's own color wrong. For earrings (shown as a pair), each earring must
 be individually large and detailed, not two small distant specks in a big empty frame —
 zoom in until the pair together still occupies the same 55-70% dominant footprint as any
-other category.
+other category. For a SET (necklace/haar plus its matching earrings shown together): this
+is still fundamentally a tall necklace-shaped piece, so the same tall VERTICAL/portrait
+orientation and ~85-90% frame-height fill applies — do NOT lay the set out horizontally
+across a wide/landscape frame. Arrange the necklace running top-to-bottom as the main
+vertical element, with the matching earrings placed below or beside its lower half, so the
+overall composition still reads as tall and vertical, never wide and horizontal.
 
 TEXT:
 Very minimal. Maximum 2-4 words. Invent a FRESH headline inspired by THIS
