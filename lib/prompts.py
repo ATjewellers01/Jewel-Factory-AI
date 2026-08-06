@@ -192,7 +192,8 @@ def _category_background_guidance(category: str | None, sub_category: str | None
     category_lower = category.lower()
     sub_category_lower = (sub_category or "").lower()
 
-    # Backgrounds mapped to ACTUAL categories + SUB-CATEGORIES from CATEGORY_TREE
+    # Backgrounds mapped to ACTUAL categories + SUB-
+    # CATEGORIES from CATEGORY_TREE
     # Every sub-category from lib/categories.ts has its own themed guidance
     backgrounds = {
         "bangles": {
