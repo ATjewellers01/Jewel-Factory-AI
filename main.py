@@ -7,13 +7,14 @@ Jewel Factory app calls this at $AI_FEATURES_URL.
 
 Current endpoints:
   POST /catalog       raw image            -> luxury studio catalog image (base64 PNG)
+  POST /classify       raw image            -> best-guess { category, subCategory, confident }
   POST /transparent   raw image + type     -> background-free centered try-on PNG (base64)
   POST /describe      image + specs        -> { designName, description }
   POST /embed/image | /embed/text | /embed/hybrid | /embed/image/batch  -> OpenCLIP 512-d vectors
   GET  /health        liveness
 
 Auth:
-  - OpenAI endpoints (/catalog, /transparent, /describe): x-api-key: <AI_FEATURES_API_KEY> (if set).
+  - OpenAI endpoints (/catalog, /classify, /transparent, /describe): x-api-key: <AI_FEATURES_API_KEY> (if set).
   - /embed/* (visual search): Authorization: Bearer <EMBEDDER_API_KEY> — same as before,
     so Jewel Factory's existing embedder client works unchanged. Just point its
     EMBEDDER_URL at THIS service.
@@ -27,6 +28,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from lib.config import API_KEY
 from routes.catalog import router as catalog_router
+from routes.classify import router as classify_router
 from routes.transparent import router as transparent_router
 from routes.describe import router as describe_router
 from routes.embed import router as embed_router
@@ -55,6 +57,7 @@ def health():
 
 # OpenAI feature routers — gated by the optional shared x-api-key.
 app.include_router(catalog_router, dependencies=[Depends(require_key)])
+app.include_router(classify_router, dependencies=[Depends(require_key)])
 app.include_router(transparent_router, dependencies=[Depends(require_key)])
 app.include_router(describe_router, dependencies=[Depends(require_key)])
 

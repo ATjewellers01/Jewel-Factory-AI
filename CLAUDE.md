@@ -37,7 +37,8 @@ Dockerfile · requirements.txt · README.md (HF YAML) · INTEGRATION.md · .env.
 
 | Path | Input (multipart unless noted) | Output |
 |---|---|---|
-| `POST /catalog` | `image`, `extraInstructions?` | `{ imageBase64, mimeType }` |
+| `POST /catalog` | `image`, `extraInstructions?`, `category?`, `subCategory?` | `{ imageBase64, mimeType }` |
+| `POST /classify` | `image` | `{ category, subCategory, confident }` — best-guess taxonomy match from the image alone (GPT-4o vision), `category`/`subCategory` null when `confident` is false. Used by Jewel Factory's similar-design search to pick a category for `/catalog` before it runs a raw query photo through the background-cleanup step — that page has no category picker, only a photo. NOT a description generator (see `/describe`, which goes the other way). |
 | `POST /transparent` | `image`, `jewelleryType`, `extraInstructions?` | `{ imageBase64, mimeType }` |
 | `POST /describe` | `image`, `category`, `subCategory`, `weight`, `purity`, `extraInstructions?` | `{ description }` (no `designName` — design names were removed from Jewel Factory 2026-07-30, product identity is the auto design number now) |
 | `POST /embed/image` | `file` | `{ dim, embedding }` |
@@ -77,7 +78,7 @@ The transparent PNG is for **2D virtual try-on**, so it must contain only the FR
 Old assets generated before this convention are full loops — **regenerate** them. Background must be 100% transparent (alpha=0), no shadow/prop/text.
 
 ## Quota / errors
-`/catalog`, `/transparent`, `/describe` call OpenAI. If OpenAI billing is exhausted they return **`429 insufficient_quota`** (the caller/proxy may surface it as 502). Fix = add OpenAI credit; no code change. `/embed/*` does NOT use OpenAI (local OpenCLIP) so it keeps working regardless.
+`/catalog`, `/classify`, `/transparent`, `/describe` call OpenAI. If OpenAI billing is exhausted they return **`429 insufficient_quota`** (the caller/proxy may surface it as 502). Fix = add OpenAI credit; no code change. `/embed/*` does NOT use OpenAI (local OpenCLIP) so it keeps working regardless.
 
 ## Cost per generation (verified 2026-07-23, USD→INR ≈ ₹96.6)
 
@@ -103,7 +104,7 @@ prompts this resolves to **High** in practice, not Medium.
   quality trade-off for jewellery product shots at this resolution.
 
 ## Auth (TWO schemes — deliberate)
-- OpenAI endpoints (`/catalog`, `/transparent`, `/describe`): header `x-api-key: <AI_FEATURES_API_KEY>` (only enforced if that env is set).
+- OpenAI endpoints (`/catalog`, `/classify`, `/transparent`, `/describe`): header `x-api-key: <AI_FEATURES_API_KEY>` (only enforced if that env is set).
 - `/embed/*`: header `Authorization: Bearer <EMBEDDER_API_KEY>` — **identical to the old embedder**, so Jewel Factory's existing embedder client works with zero code change. Falls back to `AI_FEATURES_API_KEY`.
 
 ## Env
@@ -126,7 +127,7 @@ prompts this resolves to **High** in practice, not Medium.
 `https://botivate2026-ai-workspace.hf.space` (health verified). Use the
 **lowercase** host in `AI_FEATURES_URL`/`EMBEDDER_URL` — a capital-cased URL
 307-redirects and drops the POST body (→ upstream 502). **Blocker:** the
-OpenAI-backed endpoints (`/catalog`, `/transparent`, `/describe`) currently return
+OpenAI-backed endpoints (`/catalog`, `/classify`, `/transparent`, `/describe`) currently return
 `429 insufficient_quota` — add OpenAI billing/credit (or set a funded
 `OPENAI_API_KEY` on the Space + restart). `/embed/*` uses local OpenCLIP and is
 unaffected. `AI_FEATURES_API_KEY` is NOT set on the Space, so leave it empty on
