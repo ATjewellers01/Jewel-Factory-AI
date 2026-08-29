@@ -20,9 +20,10 @@ New AI feature later = new route file + one line in `main.py` — no new deploym
 
 | Method | Path | Input | Output |
 |---|---|---|---|
-| POST | `/catalog` | `image` + optional `extraInstructions` | `{ imageBase64 }` — luxury studio catalog image |
+| POST | `/catalog` | `image` + optional `extraInstructions`, `category`, `subCategory` | `{ imageBase64 }` — luxury studio catalog image |
+| POST | `/classify` | `image` | `{ category, subCategory, confident }` — best-guess taxonomy match from the image alone (no category picker on the caller side); nulled when `confident` is false |
 | POST | `/transparent` | `image` + `jewelleryType` + optional `extraInstructions` | `{ imageBase64 }` — transparent try-on PNG (**2 OpenAI calls internally** — see below) |
-| POST | `/describe` | `image` + `category,subCategory,weight,purity` + optional `extraInstructions` | `{ designName, description }` |
+| POST | `/describe` | `image` + `category,subCategory,weight,purity` + optional `extraInstructions` | `{ description }` — no `designName` (Jewel Factory dropped design names 2026-07-30; the auto design number is the sole identifier now) |
 | POST | `/embed/image` · `/embed/text` · `/embed/hybrid` · `/embed/image/batch` | image/text | `{ dim, embedding }` — OpenCLIP 512-d (visual search) |
 | GET | `/health` | — | liveness |
 
