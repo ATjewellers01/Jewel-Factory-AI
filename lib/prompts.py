@@ -88,6 +88,19 @@ clause: a Set is still fundamentally necklace-shaped, so the same tall
 vertical/portrait orientation and ~85-90% frame-height fill applies, with the
 matching earrings arranged below/beside the necklace's lower half rather
 than the whole set spread out sideways.
+
+2026-09-28: client-reported multi-strand necklaces (2+ parallel chains down
+to a pendant) rendering with the chains converging/tapering into a V-shape
+instead of staying straight and parallel, the pendant drifting off-center,
+and the top ends/loops/hooks of the chains getting cropped off at the frame
+edge instead of staying fully visible. Added explicit geometry rules (see the
+POSITION_INSTRUCTIONS necklace entry and the COMPOSITION necklace clause
+below): multiple chains must run straight, vertical, and parallel with even
+spacing top to bottom (no V-shape, taper, bend, or convergence), the pendant
+must stay centered and straight, and the frame must include the complete
+upper chain ends/loops/hooks uncropped — this is in addition to, not a
+replacement for, the existing "no cropping anywhere" and "preserve the
+original design exactly" rules already established above.
 """
 
 import random
@@ -107,7 +120,14 @@ POSITION_INSTRUCTIONS = {
         "or the clasp — omit the entire back loop; the top should be an open U/V shape, "
         "NOT a closed circle. Photograph it straight-on from the front (not tilted), "
         "centered horizontally, with the two open strand ends reaching the top-left and "
-        "top-right of the frame."
+        "top-right of the frame. If the design has multiple parallel chains/strands "
+        "running down to the pendant, keep every chain perfectly straight and vertical "
+        "with equal, even spacing between them from top to bottom — do NOT let the "
+        "chains taper, bend, or converge into a V-shape or narrow toward the pendant. "
+        "Keep the pendant itself centered and hanging straight, not tilted or offset to "
+        "one side. Show the complete upper ends of the chains, including any hooks, "
+        "rings, or loops where they would normally continue up and over the shoulders — "
+        "do not crop these off at the top of the frame."
     ),
     "earring_left": (
         "Show a single earring photographed straight-on from the front. "
@@ -496,8 +516,16 @@ chain included — read as large in-frame, which in turn keeps the pendant itsel
 sharp, and clearly legible at a glance, with no zooming needed to make out its
 engraving/enamel detail. Getting this wrong — a small necklace floating in a mostly-empty
 square frame, chain and pendant both undersized — is a FAILURE, exactly as serious as
-getting the product's own color wrong. For earrings (shown as a pair), each earring must
-be individually large and detailed, not two small distant specks in a big empty frame —
+getting the product's own color wrong. If the necklace has multiple parallel chains/strands
+running down to the pendant, every chain must stay perfectly straight, vertical, and
+parallel to the others, with equal even spacing maintained from top to bottom — never
+tapering, bending, or converging into a narrower V-shape as they approach the pendant. The
+pendant must hang centered and straight, not tilted or drifted to one side. The complete
+upper ends of the chains — including any original hooks, rings, or loops that continue up
+toward the shoulders — must be fully visible within the frame, not cropped off at the top;
+show the entire jewellery from top to bottom without cropping any part of it. For earrings
+(shown as a pair), each earring must be individually large and detailed, not two small
+distant specks in a big empty frame —
 zoom in until the pair together still occupies the same 55-70% dominant footprint as any
 other category. For a SET (necklace/haar plus its matching earrings shown together): this
 is still fundamentally a tall necklace-shaped piece, so the same tall VERTICAL/portrait
